@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+:root {
+  --coffee-brown: #3b2f2f;
+  --paper-bg: #fdfbf7;
+  --text-stroke: #2c2c2c;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--paper-bg);
+  font-family: 'Patrick Hand', cursive;
+  color: var(--text-stroke);
+  overflow-x: hidden;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.hero {
+  text-align: center;
+  position: relative;
+  padding: 2rem;
+  max-width: 1200px;
+}
+
+.vine-image {
+  max-width: 80%;
+  height: auto;
+  opacity: 0.9;
+  filter: sepia(0.3) contrast(1.1);
+  margin-bottom: -2rem; /* Overlap slightly */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+}
+
+.title-container {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.liquid-title {
+  font-family: 'Amatic SC', cursive;
+  font-weight: 700;
+  font-size: 10rem; /* Huge text */
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  
+  /* Outline effect */
+  -webkit-text-stroke: 3px var(--text-stroke);
+  color: transparent; /* Hide fill */
+  
+  /* Liquid animation setup */
+  background-image: linear-gradient(to top, 
+    #4a3b32 0%, 
+    #4a3b32 50%, 
+    transparent 50.5%, 
+    transparent 100%
+  );
+  background-size: 100% 250%;
+  background-position: 0% 0%; /* Start from top (transparent) */
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  animation: fillUp 4s ease-in-out forwards;
+}
+
+@keyframes fillUp {
+  0% {
+    background-position: 0% 0%; /* Empty */
+  }
+  100% {
+    background-position: 0% 100%; /* Full */
+  }
+}
+
+/* Wavy effect overlay (pseudo-element not easily usable with text-clip, 
+   so we rely on the gradient and maybe a text-shadow or SVG filter if needed. 
+   For MVP, the rising fill is key.) 
+*/
+
+.subtitle {
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeIn 1s 3s forwards; /* Delay until liquid fills a bit */
+}
+
+.credits {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  background-color: #fceea7; /* Highlighter look */
+  display: inline-block;
+  padding: 0 0.5rem;
+  transform: skew(-2deg);
+  opacity: 0;
+  animation: fadeIn 1s 3.5s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
