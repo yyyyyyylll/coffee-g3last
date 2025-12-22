@@ -348,18 +348,19 @@ html, body {
   align-items: center; /* Vertically centered */
   justify-content: center;
   gap: 4rem; /* Space between image and text */
-  max-width: 1200px;
-  width: 90%;
+  max-width: 1100px; /* Reduced from 1200px */
+  width: 85%; /* Reduced from 90% */
   margin: 0 auto;
   padding-top: 5vh; 
   height: auto;
 }
 
 .content-image-wrapper {
-  flex: 1;
+  width: 60%;
+  flex: 0 0 60%;
   display: flex;
-  justify-content: flex-end; /* Align closer to text */
-  padding-right: 20px;
+  justify-content: center; /* Center image in its space */
+  padding-right: 0;
 }
 
 .content-image {
@@ -373,8 +374,10 @@ html, body {
 }
 
 .content-text-wrapper {
-  flex: 1.2; /* Give text slightly more space */
+  width: 40%;
+  flex: 0 0 40%;
   text-align: left;
+  padding-left: 2rem; /* Add some spacing between image and text */
 }
 
 .content-body-text {
@@ -384,6 +387,87 @@ html, body {
   color: var(--paper-bg);
   text-align: justify;
 }
+
+/* Scrollytelling Layout Styles */
+.scrolly-container {
+  display: flex;
+  position: relative;
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.scrolly-left {
+  width: 40%;
+  padding-bottom: 0; /* Removed extra space so outro comes up sooner */
+}
+
+.scrolly-text-block {
+  min-height: 80vh; /* Height for each scroll step */
+  display: flex;
+  align-items: center;
+  padding-right: 2rem;
+  box-sizing: border-box;
+  opacity: 0.3;
+  transition: opacity 0.5s;
+}
+
+/* Ensure the last text block allows the outro to appear immediately when text is centered */
+.scrolly-text-block:last-child {
+  /* 
+     Logic: 
+     Sticky chart is top: 10vh, height: 80vh => Bottom at 90vh.
+     Text is centered at 50vh.
+     Distance from text center to chart bottom = 40vh.
+     So we need ~40vh space below the text in the last block.
+     min-height: 80vh with align-items: center gives ~40vh below.
+     So standard 80vh is actually perfect IF there is no extra padding.
+  */
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.scrolly-text-block.active {
+  opacity: 1;
+}
+
+.scrolly-right {
+  width: 60%;
+  position: sticky;
+  top: 10vh; /* Sticky position from top */
+  height: 80vh; /* Fixed height for sticky container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-stack {
+  position: relative;
+  width: 100%;
+  height: 600px; /* Or whatever height fits */
+}
+
+.chart-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  /* Ensure hidden charts don't block interaction */
+  z-index: 1;
+}
+
+.chart-layer.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  z-index: 10;
+}
+
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -409,5 +493,36 @@ html, body {
   .content-body-text {
     font-size: 1.2rem;
     text-align: left; /* Keep readable */
+  }
+
+  /* Disable scrolly on mobile for simplicity, stack them */
+  .scrolly-container {
+    flex-direction: column;
+  }
+  .scrolly-left, .scrolly-right {
+    width: 100%;
+    position: static;
+    height: auto;
+  }
+  .scrolly-text-block {
+    min-height: auto;
+    padding: 2rem 0;
+    opacity: 1;
+  }
+  .chart-stack {
+    height: auto;
+  }
+  .chart-layer {
+    position: relative;
+    opacity: 1;
+    transform: none;
+    height: 400px;
+    margin-bottom: 2rem;
+    display: none; /* Hide all by default in mobile stack logic? Or just show active? */
+  }
+  /* Actually, for mobile, it's better to just interleave them or show active. 
+     Simple stack approach: */
+  .chart-layer.active {
+    display: block;
   }
 }

@@ -2,20 +2,59 @@ import React, { useEffect, useRef, useState } from 'react';
 import Hero from './components/Hero';
 import ChartSection from './components/ChartSection';
 import ProportionChartSection from './components/ProportionChartSection';
+import ComparisonChartSection from './components/ComparisonChartSection';
+import StoreCountChartSection from './components/StoreCountChartSection';
+import ProvinceBarChartSection from './components/ProvinceBarChartSection';
+import CityPieChartSection from './components/CityPieChartSection';
+
+// Data for Scrollytelling Sections
+const SCROLLY_SECTIONS = [
+  {
+    id: 'market-growth',
+    text: "近五年，我国社会消费品零售总额增速多次出现波动，甚至出现了负增长，2024 年的增长率也仅恢复至3.5%。虽然整体消费扩张放缓，咖啡和新式茶饮市场却维持着持续增长。数据显示，新式茶饮市场规模在近五年间由 1840 亿元增长至 超3500亿元，但其在 2021 年经历短期高增长后，近几年增速回落至 5%—15% 区间。相比而言，咖啡行业的增长更快，也更稳定。中国咖啡行业整体市场规模在 2020—2024 年间由 3000 亿元增长至 7893 亿元，预计 2025 年将突破万亿元。在增速上，咖啡行业近几年持续保持超过 26%的增速，这一表现在当前消费环境中尤为亮眼。",
+    chart: <ChartSection />
+  },
+  {
+    id: 'proportion',
+    text: "进一步拆分咖啡行业内部结构可以发现，咖啡行业的增长动力主要集中在现制咖啡领域。放眼整个咖啡行业，现制咖啡所占比重近年来持续上升。",
+    chart: <ProportionChartSection />
+  },
+  {
+    id: 'comparison',
+    text: "且在 2021—2023 年间，现制咖啡市场规模连续保持超过 30% 的同比增长，增速显著。可见，现制咖啡正在从咖啡市场中的补充品类，逐步转变为推动咖啡行业增长的核心板块，其在整体咖啡消费结构中的地位不断强化。",
+    chart: <ComparisonChartSection />
+  },
+  {
+    id: 'store-count',
+    text: "当现制咖啡逐渐成为行业增长的核心动力，这一变化也最直观地体现在线下门店的供给端。自 2020 年以来，现制咖啡的门店数量持续增长，由 2020 年的 108,467 家增至 2025 年的 254,730 家，整体数量规模扩大约 2.3 倍。在这一过程中，门店扩张速度保持在10%以上，在2023 年的增长率甚至达到 42.42%，为近几年最高水平。",
+    chart: <StoreCountChartSection />
+  },
+  {
+    id: 'province',
+    text: "从省域分布来看，2025 年中国咖啡门店呈现出明显的区域集聚特征，整体集中于东部和南部沿海地区。经济体量大、人口密集、城市化水平较高的省份成为咖啡门店分布的高密度区域，其中广东省断层领先，咖啡门店数量达约42000家。而中西部和部分东北省份门店数量相对较少。",
+    chart: <ProvinceBarChartSection />
+  },
+  {
+    id: 'city',
+    text: "从城市分布来看，咖啡门店的扩张已明显突破一线城市的传统边界。2025 年，三四线及以下城市的咖啡门店占比已接近整体的一半，成为门店数量增长的主要承载空间。这表明咖啡行业正在走向更广泛的城市体系，其消费基础和市场边界持续被拉宽。",
+    chart: <CityPieChartSection />
+  }
+];
 
 function App() {
   const [expanded, setExpanded] = useState(false);
+  const [activeSection, setActiveSection] = useState(0);
   const contentRef = useRef(null);
   const touchStart = useRef(0);
+  
+  // Refs for intersection observer
+  const textRefs = useRef([]);
 
   useEffect(() => {
     const handleWheel = (e) => {
-      // If NOT expanded and scrolling DOWN -> Expand
       if (!expanded && e.deltaY > 50) {
         setExpanded(true);
       }
-      
-      // If expanded and scrolling UP (and at top) -> Collapse
       if (expanded && contentRef.current && contentRef.current.scrollTop === 0 && e.deltaY < -50) {
         setExpanded(false);
       }
@@ -28,13 +67,9 @@ function App() {
     const handleTouchMove = (e) => {
       const touchY = e.touches[0].clientY;
       const deltaY = touchStart.current - touchY;
-
-      // Swipe UP (deltaY > 0) -> Expand
       if (!expanded && deltaY > 50) {
         setExpanded(true);
       }
-
-      // Swipe DOWN (deltaY < 0) -> Collapse
       if (expanded && contentRef.current && contentRef.current.scrollTop === 0 && deltaY < -50) {
         setExpanded(false);
       }
@@ -51,11 +86,41 @@ function App() {
     };
   }, [expanded]);
 
+  // Intersection Observer setup
+  useEffect(() => {
+    if (!expanded) return;
+
+    const observerOptions = {
+      root: contentRef.current, // Use the scrollable container as root
+      rootMargin: '-40% 0px -40% 0px', // Trigger when element is in the middle 20% of screen
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Number(entry.target.dataset.index);
+          setActiveSection(index);
+        }
+      });
+    }, observerOptions);
+
+    textRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      textRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, [expanded]); // Re-run when expanded changes to attach to correct root
+
   const MainContent = (
     <div className="main-scroll-container">
-      <div className="content-container">
+      {/* Section 1: Book Image (Intro) - Normal Scroll */}
+      <div className="content-container intro-section" style={{ minHeight: '80vh' }}>
         <div className="content-image-wrapper">
-          {/* Using book.png as requested */}
           <img src="/src/assets/book.png" alt="Coffee History Book" className="content-image" />
         </div>
         <div className="content-text-wrapper">
@@ -65,24 +130,47 @@ function App() {
         </div>
       </div>
 
-      <div className="content-container">
-        <div className="content-text-wrapper" style={{ flex: 2 }}>
-          <p className="content-body-text">
-            近五年，我国社会消费品零售总额增速多次出现波动，甚至出现了负增长，2024 年的增长率也仅恢复至3.5%。虽然整体消费扩张放缓，咖啡和新式茶饮市场却维持着持续增长。数据显示，新式茶饮市场规模在近五年间由 1840 亿元增长至 超3500亿元，但其在 2021 年经历短期高增长后，近几年增速回落至 5%—15% 区间。相比而言，咖啡行业的增长更快，也更稳定。中国咖啡行业整体市场规模在 2020—2024 年间由 3000 亿元增长至 7893 亿元，预计 2025 年将突破万亿元。在增速上，咖啡行业近几年持续保持超过 26%的增速，这一表现在当前消费环境中尤为亮眼。
-          </p>
+      {/* Scrollytelling Container */}
+      <div className="scrolly-container">
+        {/* Left Column: Scrolling Text */}
+        <div className="scrolly-left">
+          {SCROLLY_SECTIONS.map((section, index) => (
+            <div 
+              key={section.id} 
+              className={`scrolly-text-block ${activeSection === index ? 'active' : ''}`}
+              ref={el => textRefs.current[index] = el}
+              data-index={index}
+            >
+              <p className="content-body-text">
+                {section.text}
+              </p>
+            </div>
+          ))}
         </div>
-        <div className="content-image-wrapper" style={{ minHeight: '500px', flex: 3 }}>
-          <ChartSection />
+
+        {/* Right Column: Sticky Charts */}
+        <div className="scrolly-right">
+          <div className="chart-stack">
+            {SCROLLY_SECTIONS.map((section, index) => (
+              <div 
+                key={section.id} 
+                className={`chart-layer ${activeSection === index ? 'active' : ''}`}
+              >
+                {section.chart}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="content-container">
-        <div className="content-image-wrapper" style={{ minHeight: '500px', flex: 3 }}>
-          <ProportionChartSection />
+      {/* Section 8: Conclusion Text (Outro) - Normal Scroll */}
+      <div className="content-container outro-section" style={{ minHeight: '50vh' }}>
+        <div className="content-image-wrapper">
+          <img src="/src/assets/store.png" alt="Coffee Store" className="content-image" />
         </div>
-        <div className="content-text-wrapper" style={{ flex: 2 }}>
+        <div className="content-text-wrapper">
           <p className="content-body-text">
-            进一步拆分咖啡行业内部结构可以发现，咖啡行业的增长动力主要集中在现制咖啡领域。放眼整个咖啡行业，现制咖啡所占比重近年来持续上升。
+            综合来看，中国咖啡行业的快速扩张并非偶然，在整体消费增速放缓的背景下，呈现出一条与宏观趋势并不完全同步的增长曲线。这一变化指向一个值得追问的问题——在消费环境趋紧、支出选择更谨慎的情况下，为什么咖啡，尤其是现制咖啡，反而获得了更强的生命力？要理解这一现象，不能仅停留在表面的规模和数量层面，需要进一步深入消费逻辑本身。据此，我们聚焦消费降级与情绪经济两个维度，尝试拆解它们如何共同塑造近年来中国咖啡行业的增长路径。
           </p>
         </div>
       </div>
