@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
 :root {
-  --coffee-brown: #3b2f2f;
+  --coffee-brown: #512615;
   --paper-bg: #F0ECE5;
   --text-stroke: #2c2c2c;
 }
@@ -29,20 +29,22 @@ body {
   position: relative;
   /* Reduced padding to save vertical space */
   padding: 1rem;
-  max-width: 1200px;
+  width: 100%; /* FORCE full width */
+  max-width: 100%; 
   /* Ensure hero takes full height to allow bottom positioning relative to it */
-  min-height: 90vh;
+  min-height: 100vh;
   /* Changed from just being content based */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden; /* Hide overflow from the oval */
 }
 
 .image-wrapper {
   position: relative;
   /* Reduced size to fit in viewport */
-  width: 450px;
-  max-width: 80%;
+  width: 350px;
+  max-width: 50%;
   margin: 0 auto;
 }
 
@@ -87,8 +89,7 @@ body {
 .liquid-title {
   font-family: 'Amatic SC', cursive;
   font-weight: 700;
-  font-size: 8rem;
-  /* Reduced from 10rem to fit */
+  font-size: 10rem; /* Reduced to fit in viewport */
   margin: 0;
   line-height: 1;
   letter-spacing: 0.05em;
@@ -203,15 +204,14 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 100px;
-  /* Touch target area */
+  height: 25vh; /* Reduced height to avoid crowding */
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  z-index: 10;
+  z-index: 20; /* Ensure it's above other elements */
   cursor: grab;
-  /* Ensure it doesn't block clicks on content above it initially */
-  pointer-events: auto;
+  touch-action: none; /* Prevent default scroll when dragging */
+  overflow: hidden; /* Hide the overflow if we make the curve wider */
 }
 
 .pull-trigger-container:active {
@@ -219,56 +219,65 @@ body {
 }
 
 .pull-curve {
-  width: 100%;
+  width: 90%; /* Reduced to 90% as requested */
+  /* margin-left removed to rely on flex centering */
   background-color: var(--coffee-brown);
-  /* Brown color */
-  border-radius: 50% 50% 0 0;
-  /* Hill shape */
+  border-radius: 50%; /* Full oval shape */
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 15px;
-  box-shadow: 0 -5px 15px rgba(59, 47, 47, 0.3);
-  transition: height 0.1s ease-out, transform 0.1s ease-out;
-  transform-origin: bottom center;
+  padding-top: 25px; 
+  box-shadow: 0 -5px 20px rgba(59, 47, 47, 0.4);
+  /* height and transition are handled in JS */
+  will-change: height;
+  
+  /* Submerge the oval so only the top part is visible */
+  transform: translateY(60%); 
 }
 
 .pull-text {
   font-family: 'Amatic SC', cursive;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: #F0ECE5;
-  /* Paper white text */
-  opacity: 0.9;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   pointer-events: none;
-  animation: bounceUp 2s infinite;
-}
-
-@keyframes bounceUp {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-5px);
-  }
-}
-
-/* Main Content Section */
-#main-content {
-  min-height: 100vh;
-  padding: 4rem 2rem;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.arrow-icon {
+  font-size: 1.2rem;
+  animation: bounceUp 1.5s infinite;
+}
+
+@keyframes bounceUp {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+/* Main Content Section - Now inside Slider */
+.slider-content {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  /* background-color is handled by the slider curve */
+  color: var(--paper-bg);
+  /* display/flex handled in component for transition */
+  position: relative;
+  z-index: 50; 
 }
 
 .content-placeholder {
-  max-width: 800px;
+  max-width: 1400px;
   width: 100%;
   text-align: center;
 }
@@ -276,7 +285,7 @@ body {
 .content-placeholder h2 {
   font-family: 'Amatic SC', cursive;
   font-size: 4rem;
-  color: var(--coffee-brown);
+  color: var(--paper-bg); /* Changed to light color for contrast on brown bg */
   margin-bottom: 2rem;
 }
 
