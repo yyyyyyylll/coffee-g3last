@@ -36,7 +36,8 @@ body {
   height: auto;
   opacity: 0.9;
   filter: sepia(0.3) contrast(1.1);
-  margin-bottom: -2rem; /* Overlap slightly */
+  margin-bottom: -2rem;
+  /* Overlap slightly */
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -51,43 +52,66 @@ body {
 .liquid-title {
   font-family: 'Amatic SC', cursive;
   font-weight: 700;
-  font-size: 10rem; /* Huge text */
+  font-size: 10rem;
   margin: 0;
   line-height: 1;
   letter-spacing: 0.05em;
-  
+
   /* Outline effect */
   -webkit-text-stroke: 3px var(--text-stroke);
-  color: transparent; /* Hide fill */
-  
-  /* Liquid animation setup */
-  background-image: linear-gradient(to top, 
-    #4a3b32 0%, 
-    #4a3b32 50%, 
-    transparent 50.5%, 
-    transparent 100%
-  );
-  background-size: 100% 250%;
-  background-position: 0% 0%; /* Start from top (transparent) */
+  color: transparent;
+
+  /* Single Color Liquid Wave Animation 
+     Using a single SVG layer that is seamless */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%233b2f2f' fill-opacity='1' d='M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,149.3C672,139,768,149,864,170.7C960,192,1056,224,1152,224C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+
+  background-repeat: repeat-x;
+
+  /* 
+     Seamless Loop Large Wave Logic:
+     - Scale: 200% width (Large wave, 0.5 cycle visible at once) 
+     - Offset Calculation: (Container - Image) = (C - 2C) = -1C.
+     - Moving 0% -> 100% moves -1C.
+     - Wait, if we want to move exactly 1 Image Width (2C)?
+     - If 0->100% moves 1C. Then 0->200% moves 2C.
+     - So we animate background-position-x from 0% to 200%.
+  */
+  background-size: 200% 150%;
+
+  background-position: 0% 100%;
+
   -webkit-background-clip: text;
   background-clip: text;
-  
-  animation: fillUp 4s ease-in-out forwards;
+
+  /* Dual Animation:
+     - waveScroll: Horizontal linear loop. 16s (Very Slow)
+     - waveTide: Vertical organic fluctuation. 20s (Very Slow)
+  */
+  animation: waveScroll 16s linear infinite, waveTide 20s ease-in-out infinite alternate;
 }
 
-@keyframes fillUp {
-  0% {
-    background-position: 0% 0%; /* Empty */
+@keyframes waveScroll {
+  from {
+    background-position-x: 0%;
   }
-  100% {
-    background-position: 0% 100%; /* Full */
+
+  to {
+    background-position-x: 200%;
   }
 }
 
-/* Wavy effect overlay (pseudo-element not easily usable with text-clip, 
-   so we rely on the gradient and maybe a text-shadow or SVG filter if needed. 
-   For MVP, the rising fill is key.) 
-*/
+@keyframes waveTide {
+  from {
+    background-position-y: 110%;
+    /* Low tide */
+  }
+
+  to {
+    background-position-y: 80%;
+    /* High tide */
+  }
+}
 
 .subtitle {
   font-size: 2.5rem;
@@ -95,13 +119,15 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   opacity: 0;
-  animation: fadeIn 1s 3s forwards; /* Delay until liquid fills a bit */
+  animation: fadeIn 1s 3s forwards;
+  /* Delay until liquid fills a bit */
 }
 
 .credits {
   font-size: 1.2rem;
   margin-top: 0.5rem;
-  background-color: #fceea7; /* Highlighter look */
+  background-color: #fceea7;
+  /* Highlighter look */
   display: inline-block;
   padding: 0 0.5rem;
   transform: skew(-2deg);
@@ -110,5 +136,7 @@ body {
 }
 
 @keyframes fadeIn {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
