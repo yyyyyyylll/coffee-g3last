@@ -27,32 +27,62 @@ body {
 .hero {
   text-align: center;
   position: relative;
-  padding: 2rem;
+  /* Reduced padding to save vertical space */
+  padding: 1rem;
   max-width: 1200px;
 }
 
-.vine-image {
+.image-wrapper {
+  position: relative;
+  /* Reduced size to fit in viewport */
+  width: 450px;
   max-width: 80%;
+  margin: 0 auto;
+}
+
+/* Reduced size to be flush with image */
+.image-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  /* Grid Pattern (Subtle Dark Brown) */
+  background-image:
+    linear-gradient(rgba(59, 47, 47, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 47, 47, 0.15) 1px, transparent 1px);
+  background-size: 30px 30px;
+  /* Smaller grid cells for smaller image */
+  background-position: center center;
+
+  /* Elliptical Mask with Fade Out 
+     Visible at center (black), transparent at edges */
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 70%);
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 70%);
+}
+
+.vine-image {
+  width: 100%;
   height: auto;
   opacity: 0.9;
   filter: sepia(0.3) contrast(1.1);
-  margin-bottom: -2rem;
-  /* Overlap slightly */
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 600px;
 }
 
 .title-container {
   position: relative;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  /* Reduced margin */
 }
 
 .liquid-title {
   font-family: 'Amatic SC', cursive;
   font-weight: 700;
-  font-size: 10rem;
+  font-size: 8rem;
+  /* Reduced from 10rem to fit */
   margin: 0;
   line-height: 1;
   letter-spacing: 0.05em;
@@ -131,8 +161,10 @@ body {
 }
 
 .subtitle {
-  font-size: 2.5rem;
-  margin-top: 1rem;
+  font-size: 1.8rem;
+  /* Reduced from 2.5rem */
+  margin-top: 0.5rem;
+  /* Reduced margin */
   text-transform: uppercase;
   letter-spacing: 0.1em;
   opacity: 0;
@@ -141,7 +173,8 @@ body {
 }
 
 .credits {
-  font-size: 1.2rem;
+  font-size: 1rem;
+  /* Reduced from 1.2rem */
   margin-top: 0.5rem;
   background-color: #fceea7;
   /* Highlighter look */

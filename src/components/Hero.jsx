@@ -8,7 +8,9 @@ export default function Hero() {
         {/* Optional: Add a grid background if time permits */}
       </div>
 
-      <img src={coffeeUp} alt="Sketch of a coffee cup" className="vine-image" />
+      <div className="image-wrapper">
+        <img src={coffeeUp} alt="Sketch of a coffee cup" className="vine-image" />
+      </div>
 
       <div className="title-container">
         <h1 className="liquid-title" data-text="COFFEE">COFFEE</h1>
