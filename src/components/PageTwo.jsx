@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactECharts from 'echarts-for-react';
 import change1 from '../assets/change1.png';
+import title2 from '../assets/part2-1素材/title2.png';
+import image3 from '../assets/part2-1素材/3.png';
 import PriceWarTimeline from './PriceWarTimeline';
 import {
   getLuckinRevenueOption,
@@ -282,7 +284,7 @@ const FullWidthText = ({ children }) => (
   <div style={{ 
     width: '100%', 
     marginBottom: '60px', 
-    fontSize: '18px', 
+    fontSize: '21px', 
     lineHeight: '1.8', 
     color: '#4B3621',
     textAlign: 'justify'
@@ -342,7 +344,7 @@ const ScrollyGroup = ({ items }) => {
               opacity: activeSection === index ? 1 : 0.3
             }}
           >
-            <div className="content-body-text" style={{ fontSize: '16px', lineHeight: '1.8', color: '#4B3621' }}>
+            <div className="content-body-text" style={{ fontSize: '21px', lineHeight: '1.8', color: '#4B3621' }}>
               {item.text}
             </div>
           </div>
@@ -384,24 +386,48 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
    return (
      <div className="page-two-content" style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto', width: '85%' }}>
       {/* Intro Section */}
-      <h2 className="section-title" style={{ fontSize: '32px', fontWeight: 'bold', marginTop: '50vh', marginBottom: '20px', textAlign: 'center' }}>二、消费降级：价格成为关键变量</h2>
-      <p className="intro-text" style={{ fontSize: '18px', lineHeight: '1.8', marginBottom: '40px', textAlign: 'center', color: '#4B3621' }}>
-        价格作为最直观的市场信号，与咖啡市场的高速增长紧密相连，成为推动市场渗透与重塑消费习惯的核心支点。这既体现在咖啡品牌的战略选择上，也反映在消费者端的需求变迁中。
-      </p>
+      <div style={{ marginTop: 'calc(50vh - 200px)', marginBottom: '20px', display: 'flex', justifyContent: 'flex-end', marginRight: '-60px' }}>
+        <img src={title2} alt="消费降级" style={{ width: '1000px', height: 'auto' }} />
+      </div>
+      <div style={{ textAlign: 'center', marginBottom: '40px', color: '#4B3621', marginTop: '-200px' }}>
+        <p style={{ fontSize: '21px', lineHeight: '1.8', marginBottom: '0', textAlign: 'center' }}>
+          价格作为最直观的市场信号，与咖啡市场的高速增长紧密相连，成为推动市场渗透与重塑消费习惯的核心支点。
+        </p>
+        <p style={{ fontSize: '21px', lineHeight: '1.8', marginTop: '0', textAlign: 'center' }}>
+          这既体现在咖啡品牌的战略选择上，也反映在消费者端的需求变迁中。
+        </p>
+      </div>
+
+      <div style={{ 
+        width: '100vw', 
+        marginLeft: 'calc(50% - 50vw)', 
+        marginBottom: '60px',
+        position: 'relative'
+      }}>
+        <img src={image3} alt="" style={{ width: '100%', height: 'auto', display: 'block' }} />
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          right: '10%',
+          transform: 'translateY(calc(-50% + 200px))',
+          width: '45%',
+          color: '#4B3621',
+          fontSize: '21px',
+          letterSpacing: '2px',
+          lineHeight: '1.8',
+          textAlign: 'justify'
+        }}>
+          <p style={{ marginBottom: '20px', fontSize: '21px', letterSpacing: '2px' }}>
+            面对日益拥挤的咖啡赛道，低价成为品牌打开更广阔的消费市场的破局之刃。近年来，各大咖啡品牌的价格战已逐渐成为常态化竞争，其激烈与持久度远超外界想象。
+          </p>
+          <p style={{ fontSize: '21px', letterSpacing: '2px' }}>
+            库迪咖啡在2023年率先掀起了“9.9元”的低价浪潮；瑞幸咖啡迅速应战，将9.9元的优惠价格从活动限定推向常态化。幸运咖、皮爷咖啡等品牌也在2024年陆续加入战局。进入2025年，价格内卷愈演愈烈，即使是面向中高端市场的星巴克也罕见地调低了多款产品的价格。这表明低价已经从短期的营销战术变为长期的战略选择。
+          </p>
+        </div>
+      </div>
 
       {/* Price War Section */}
       <div className="subsection">
-        <h3 className="subsection-title" style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '30px', borderLeft: '5px solid #d97a00', paddingLeft: '15px', color: '#4B3621' }}>1. 价格战与降本增效</h3>
-        
-        <div style={{ marginBottom: '40px', fontSize: '16px', lineHeight: '1.8', color: '#4B3621' }}>
-          <p style={{ marginBottom: '20px' }}>
-            面对日益拥挤的咖啡赛道，低价成为品牌打开更广阔的消费市场的破局之刃。近年来，各大咖啡品牌的价格战已逐渐成为常态化竞争，其激烈与持久度远超外界想象。
-          </p>
-          <p style={{ marginBottom: '20px' }}>
-            库迪咖啡在2023年率先掀起了“9.9元”的低价浪潮；瑞幸咖啡迅速应战，将9.9元的优惠价格从活动限定推向常态化。幸运咖、皮爷咖啡等品牌也在2024年陆续加入战局，将众多咖啡产品价格下探至个位数。进入2025年，价格内卷未见停歇，更有愈演愈烈的趋势，即使是面向中高端市场的星巴克也罕见地调低了数十款产品的价格。这一系列事件表明，低价已经从短期的营销战术变为长期的战略选择。
-          </p>
-        </div>
-        
         <div className="media-placeholder" style={{ display: 'block', maxWidth: '100%', marginBottom: '80px' }}>
           <PriceWarTimeline />
         </div>

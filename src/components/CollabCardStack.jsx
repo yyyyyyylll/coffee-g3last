@@ -171,8 +171,14 @@ const CollabCardStack = () => {
             // Distance = (window.innerWidth / 2) + (CARD_WIDTH / 6)
             const maxTranslate = (window.innerWidth / 2) + (CARD_WIDTH / 6);
             
+            // Stack offset logic
+            const STACK_OFFSET = 20; // pixels
+            const centerOffset = (cards.length - 1) * STACK_OFFSET / 2;
+            const initialX = index * STACK_OFFSET - centerOffset;
+            const initialY = index * STACK_OFFSET - centerOffset;
+            
             // Flat translation only, no rotation
-            const currentX = isLastCard ? 0 : cardProgress * maxTranslate * card.direction;
+            const currentX = (isLastCard ? 0 : cardProgress * maxTranslate * card.direction) + initialX;
             // Remove rotation for flat sliding look
             const currentRotate = 0; 
             const currentOpacity = 1; // Keep fully visible as requested
@@ -195,7 +201,7 @@ const CollabCardStack = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   zIndex: zIndex,
-                  transform: `translate(${currentX}px, 0) rotate(${currentRotate}deg)`,
+                  transform: `translate(${currentX}px, ${initialY}px) rotate(${currentRotate}deg)`,
                   opacity: currentOpacity,
                   boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
                   padding: '20px',
