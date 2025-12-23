@@ -1,4 +1,5 @@
 import React from 'react';
+import PriceWarTimeline from './PriceWarTimeline';
 
 const PageTwo = () => {
   return (
@@ -17,8 +18,8 @@ const PageTwo = () => {
           库迪咖啡在2023年率先掀起了“9.9元”的低价浪潮；瑞幸咖啡迅速应战，将9.9元的优惠价格从活动限定推向常态化。幸运咖、皮爷咖啡等品牌也在2024年陆续加入战局，将众多咖啡产品价格下探至个位数。进入2025年，价格内卷未见停歇，更有愈演愈烈的趋势，即使是面向中高端市场的星巴克也罕见地调低了数十款产品的价格。这一系列事件表明，低价已经从短期的营销战术变为长期的战略选择。
         </p>
         
-        <div className="media-placeholder">
-          <div className="placeholder-box">（价格战图片）ly【视频】</div>
+        <div className="media-placeholder" style={{ display: 'block', maxWidth: '100%' }}>
+          <PriceWarTimeline />
         </div>
 
         <p>
