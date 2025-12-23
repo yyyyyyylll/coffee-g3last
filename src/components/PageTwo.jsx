@@ -3,6 +3,11 @@ import ReactECharts from 'echarts-for-react';
 import change1 from '../assets/change1.png';
 import title2 from '../assets/part2-1素材/title2.png';
 import image3 from '../assets/part2-1素材/3.png';
+import image4 from '../assets/part2-1素材/4.png';
+import image5 from '../assets/part2-1素材/5.png';
+import image6 from '../assets/part2-1素材/6.png';
+import image7 from '../assets/part2-1素材/7.png';
+import image8 from '../assets/part2-1素材/8.png';
 import PriceWarTimeline from './PriceWarTimeline';
 import {
   getLuckinRevenueOption,
@@ -295,87 +300,27 @@ const FullWidthText = ({ children }) => (
 
 // Helper Component for Scrollytelling Group
 const ScrollyGroup = ({ items }) => {
-  const [activeSection, setActiveSection] = useState(0);
-  const textRefs = useRef([]);
-
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-40% 0px -40% 0px',
-      threshold: 0
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const index = Number(entry.target.dataset.index);
-          setActiveSection(index);
-        }
-      });
-    }, observerOptions);
-
-    textRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => {
-      textRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
-      });
-    };
-  }, [items]);
-
   return (
-    <div className="scrolly-container" style={{ width: '100%', marginBottom: '60px', position: 'relative' }}>
-      <div className="scrolly-left">
-        {items.map((item, index) => (
-          <div 
-            key={index}
-            className={`scrolly-text-block ${activeSection === index ? 'active' : ''}`}
-            ref={el => textRefs.current[index] = el}
-            data-index={index}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              minHeight: '80vh',
-              paddingRight: '40px',
-              transition: 'opacity 0.5s',
-              opacity: activeSection === index ? 1 : 0.3
-            }}
-          >
+    <div style={{ width: '100%', marginBottom: '60px' }}>
+      {items.map((item, index) => (
+        <div key={index} style={{
+          display: 'flex',
+          alignItems: 'center',
+          marginBottom: '100px',
+          minHeight: '400px'
+        }}>
+          {/* Text Section */}
+          <div style={{ flex: 1, paddingRight: '40px' }}>
             <div className="content-body-text" style={{ fontSize: '21px', lineHeight: '1.8', color: '#4B3621' }}>
               {item.text}
             </div>
           </div>
-        ))}
-      </div>
-
-      <div className="scrolly-right" style={{ position: 'sticky', top: '15vh', height: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="chart-stack" style={{ position: 'relative', width: '100%', height: '100%' }}>
-          {items.map((item, index) => (
-            <div 
-              key={index}
-              className={`chart-layer ${activeSection === index ? 'active' : ''}`}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                opacity: activeSection === index ? 1 : 0,
-                transform: activeSection === index ? 'translateY(0)' : 'translateY(30px)',
-                transition: 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-                pointerEvents: activeSection === index ? 'auto' : 'none',
-                zIndex: activeSection === index ? 10 : 1,
-                backgroundColor: 'transparent'
-              }}
-            >
-              {item.chart}
-            </div>
-          ))}
+          {/* Chart Section */}
+          <div style={{ flex: 1, height: '400px', width: '50%' }}>
+            {item.chart}
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
@@ -435,88 +380,272 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
 
       {/* Block 1: Intro to Charts */}
       <FullWidthText>
-        <p style={{ fontWeight: 'bold', fontSize: '1.2em', marginBottom: '1em' }}>
+        <p style={{ fontWeight: 'bold', fontSize: '21px', marginBottom: '1em', textAlign: 'center' }}>
           企业敢于打持久价格战的底气，并非单纯依赖补贴或短期让利，而是建立在对成本结构和运营效率的系统性重塑之上。
         </p>
       </FullWidthText>
 
-      {/* Scrolly Group 1: Revenue/Profit/Cost */}
-      <ScrollyGroup items={[
-        {
-          text: (
-            <p>
-              以瑞幸为代表的新兴连锁品牌，构建了一套降本增效的战略模式。财报数据显示，其2019-2024年的营收规模持续扩大，5年以来净收入增长率保持高速增长，均维持在30%以上。
-            </p>
-          ),
-          chart: <ReactECharts option={getLuckinRevenueOption()} style={{ height: '100%', width: '100%' }} />
-        },
-        {
-          text: (
-            <p>
-              且利润营利能力也得到显著改善，在2024年突破40亿。这一表现为其在价格层面的持续进攻提供了现实基础，也为后续通过规模扩张实现降本增效埋下伏笔。
-            </p>
-          ),
-          chart: <ReactECharts option={getLuckinProfitOption()} style={{ height: '100%', width: '100%' }} />
-        },
-        {
-          text: (
-            <p>
-              从门店数据看，瑞幸在 2021 年后进入明显的加速扩张阶段，门店总数在 2023 年几乎翻倍，增长率一度接近 100%。在这样的扩张节奏下，瑞幸的总运营费用快速上升并不意外，但关键在于其费用结构的变化：门店运营费用占比整体呈下降趋势，从接近60%下降到2023年最低40%，说明新增门店并未线性推高单位运营成本。结合门店增长情况可以推断，瑞幸的降本增效并不是通过压缩投入实现的，而是依靠标准化门店模型和集中采购，在规模迅速放大的过程中不断摊薄单店成本，从而支撑其低价策略的长期运转，通过规模化与精细化的运营有效缩减了成本，为持续的价格竞争提供了财务支撑。
-            </p>
-          ),
-          chart: <ReactECharts option={getLuckinCostOption()} style={{ height: '100%', width: '100%' }} />
-        },
-        {
-          text: (
-            <p>
-              与本土连锁通过规模扩张实现增长不同，星巴克在中国市场近几年的整体经营表现呈现出明显的承压态势。从净收入和利润看，2019—2025 年间，星巴克中国区的收入与盈利均出现波动式下滑，中国市场在其全球体系中的收入和利润占比也由高位逐步回落。
-            </p>
-          ),
-          chart: <ReactECharts option={getStarbucksRevenueOption()} style={{ height: '100%', width: '100%' }} />
-        },
-        {
-          text: (
-            <p>
-              这表明，星巴克在中国的增长动能正在减弱，原有依赖品牌溢价和稳定客群的商业模式，难以对冲消费环境变化带来的压力。
-            </p>
-          ),
-          chart: <ReactECharts option={getStarbucksProfitOption()} style={{ height: '100%', width: '100%' }} />
-        },
-        {
-          text: (
-            <p>
-              进一步结合门店数据可以发现，尽管星巴克仍在持续开店，但其门店扩张节奏相对温和，未形成通过快速铺店摊薄成本的规模效应。
-            </p>
-          ),
-          chart: <ReactECharts option={getStarbucksStoreOption()} style={{ height: '100%', width: '100%' }} />
-        },
-        {
-          text: (
-            <p>
-              在成本端，2022—2025 年间，其门店运营费用和产品分销成本占比始终处于较高水平，且并未随门店增加而显著下降。由此可见，星巴克并未建立起以规模化降本为核心的价格竞争能力，在价格敏感度不断上升的市场环境中，其经营模式对长期价格战的适应性相对受限。
-            </p>
-          ),
-          chart: <ReactECharts option={getStarbucksCostOption()} style={{ height: '100%', width: '100%' }} />
-        }
-      ]} />
+      {/* Three-column Layout: Image | Revenue | Profit */}
+      <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch', height: '400px', marginBottom: '60px', width: '100%' }}>
+        <div style={{ width: '36%', flexShrink: 0, display: 'flex', alignItems: 'center', overflow: 'visible', justifyContent: 'flex-start', position: 'relative', marginTop: '-130px' }}>
+          <img src={image4} alt="Analysis" style={{ width: '100%', height: 'auto', transform: 'scale(2, 2.7)', transformOrigin: 'left center', position: 'relative', zIndex: 10 }} />
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, calc(-50% + 60px))',
+            width: '70%', // Adjusted width to 70%
+            padding: '20px',
+            zIndex: 20,
+            color: '#4B3621',
+            fontSize: '21px',
+            lineHeight: '1.6',
+            fontWeight: 'normal',
+            textAlign: 'justify',
+            fontFamily: '"SimSun", "Songti SC", serif', // Added Songti font
+            textIndent: '2em'
+          }}>
+            以瑞幸为代表的新兴连锁品牌，构建了一套降本增效的战略模式。财报数据显示，其2019-2024年的营收规模持续扩大，5年以来净收入增长率保持高速增长，均维持在30%以上，且利润营利能力也得到显著改善，在2024年突破40亿。这一表现为其在价格层面的持续进攻提供了现实基础，也为后续通过规模扩张实现降本增效埋下伏笔。
+          </div>
+        </div>
+        <div style={{ width: '36%', flexShrink: 0, position: 'relative', zIndex: 30 }}>
+          <ReactECharts option={getLuckinRevenueOption()} style={{ height: '100%', width: '100%' }} />
+        </div>
+        <div style={{ width: '36%', flexShrink: 0, marginLeft: '-3%', position: 'relative', zIndex: 30 }}>
+          <ReactECharts option={getLuckinProfitOption()} style={{ height: '100%', width: '100%' }} />
+        </div>
+      </div>
+
+      {/* Section: Luckin Cost */}
+      <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch', height: '450px', marginBottom: '60px', width: '100%', marginTop: '110px' }}>
+        <div style={{ width: '50%', flexShrink: 0, display: 'flex', alignItems: 'center', overflow: 'visible', justifyContent: 'flex-start', position: 'relative', marginTop: '-130px' }}>
+          <img src={image4} alt="Analysis" style={{ width: '100%', height: 'auto', transform: 'scale(2, 1.88)', transformOrigin: 'left center', position: 'relative', zIndex: 10 }} />
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, calc(-50% + 60px))',
+            width: '70%',
+            padding: '20px',
+            zIndex: 20,
+            color: '#4B3621',
+            fontSize: '21px',
+            lineHeight: '1.6',
+            fontWeight: 'normal',
+            textAlign: 'justify',
+            fontFamily: '"SimSun", "Songti SC", serif',
+            textIndent: '2em'
+          }}>
+            从门店数据看，瑞幸在2021年后进入明显的加速扩张阶段，门店总数在2023年几乎翻倍。在这样的扩张节奏下，瑞幸的总运营费用快速上升并不意外，但关键在于其费用结构的变化：门店运营费用占比从接近60%下降到2023年最低40%，说明新增门店并未线性推高单位运营成本。结合门店扩张可见，瑞幸并非压缩投入降本，而是通过标准化运营与规模扩张摊薄单店成本，为低价策略提供可持续支撑。
+          </div>
+        </div>
+        <div style={{ width: '50%', flexShrink: 0, position: 'relative', zIndex: 30, top: '25px' }}>
+          <ReactECharts option={getLuckinCostOption()} style={{ height: '100%', width: '100%' }} />
+        </div>
+      </div>
+
+      {/* Inserted Image 5 */}
+      <div style={{ 
+        width: '100vw', 
+        marginLeft: 'calc(50% - 50vw)', 
+        marginBottom: '60px',
+        position: 'relative',
+        marginTop: '-210px'
+      }}>
+        <img src={image5} alt="" style={{ width: '100%', height: 'auto', display: 'block' }} />
+      </div>
+
+      {/* Block: Starbucks Intro with Image 6 Background */}
+       <div style={{ 
+         position: 'relative',
+         width: '100vw', 
+         marginLeft: 'calc(50% - 50vw)', 
+         marginBottom: '60px',
+          overflow: 'visible',
+          marginTop: '-140px'
+        }}>
+        {/* Background Decoration Image */}
+        <img 
+          src={image6} 
+          alt="" 
+          style={{ 
+            position: 'absolute',
+            left: 0,
+            top: '50%',
+            transform: 'translateY(calc(-50% + 200px))',
+            width: 'auto',
+            height: '360%', // Scaled up 3x
+            maxHeight: 'none',
+            zIndex: 0,
+            opacity: 0.8 // Slight transparency for background
+          }} 
+        />
+        
+        {/* Text Content */}
+        <div style={{ 
+          position: 'relative',
+          zIndex: 1,
+          maxWidth: '1200px',
+          width: '85%',
+          margin: '0 auto',
+          padding: '40px 0'
+        }}>
+          <p style={{ fontSize: '21px', lineHeight: '1.8', textAlign: 'justify', textIndent: '2em', color: '#4B3621' }}>
+            与本土连锁通过规模扩张实现增长不同，星巴克在中国市场近几年的整体经营表现呈现出明显的承压态势。从净收入和利润看，近五年星巴克中国区的收入与盈利均出现波动式下滑，在其全球体系中的收入和利润占比也由高位逐步回落。这表明，星巴克在中国的增长动能正在减弱，原有依赖品牌溢价和稳定客群的商业模式，可能难以应对消费环境变化带来的压力。
+          </p>
+        </div>
+      </div>
+
+      {/* Side-by-side Charts: Revenue & Profit */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'stretch', marginBottom: '100px', marginTop: '-30px', width: '100%', gap: '40px' }}>
+        <div style={{ flex: 1, height: '400px' }}>
+          <ReactECharts option={getStarbucksRevenueOption()} style={{ height: '100%', width: '100%' }} />
+        </div>
+        <div style={{ flex: 1, height: '400px' }}>
+          <ReactECharts option={getStarbucksProfitOption()} style={{ height: '100%', width: '100%' }} />
+        </div>
+      </div>
+
+      {/* Store Data Section with Decoration */}
+        <div style={{ 
+          position: 'relative',
+          width: '100vw', 
+          marginLeft: 'calc(50% - 50vw)', 
+          marginBottom: '100px',
+          overflow: 'visible',
+          marginTop: '-55px'
+        }}>
+         {/* Decoration Image */}
+          <img 
+            src={image6} 
+            alt="" 
+            style={{ 
+              position: 'absolute',
+              left: 0,
+              top: '50%',
+              transform: 'translateY(calc(-50% + 130px))',
+              width: 'auto',
+              height: '120%',
+              maxHeight: 'none',
+              zIndex: 0,
+              opacity: 0.8
+            }} 
+          />
+         
+         {/* Content */}
+         <div style={{ 
+           position: 'relative',
+           zIndex: 1,
+           maxWidth: '1200px',
+           width: '85%',
+           margin: '0 auto',
+           display: 'flex',
+           alignItems: 'center',
+           minHeight: '400px'
+         }}>
+            <div style={{ flex: 1, paddingRight: '40px' }}>
+              <div className="content-body-text" style={{ fontSize: '21px', lineHeight: '1.8', color: '#4B3621' }}>
+                <p>
+                  进一步结合门店数据可以发现，尽管星巴克仍在持续开店，但其门店扩张节奏相对温和，未形成通过快速铺店摊薄成本的规模效应。
+                </p>
+              </div>
+            </div>
+            <div style={{ flex: 1, height: '400px', width: '50%' }}>
+              <ReactECharts option={getStarbucksStoreOption()} style={{ height: '100%', width: '100%' }} />
+            </div>
+         </div>
+      </div>
+
+      {/* Cost Data Section with Decoration */}
+      <div style={{ 
+        position: 'relative',
+        width: '100vw', 
+        marginLeft: 'calc(50% - 50vw)', 
+        marginBottom: '100px',
+        overflow: 'visible',
+        marginTop: '-80px'
+      }}>
+         {/* Decoration Image 7 */}
+          <img 
+            src={image7} 
+            alt="" 
+            style={{ 
+              position: 'absolute',
+              right: 0,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: 'auto',
+              height: '168%',
+              maxHeight: 'none',
+              zIndex: 0,
+              opacity: 0.8
+            }} 
+          />
+
+        <div style={{
+          position: 'relative',
+          zIndex: 1,
+          maxWidth: '1200px',
+          width: '85%',
+          margin: '0 auto',
+          display: 'flex',
+          alignItems: 'center',
+          minHeight: '400px'
+        }}>
+          <div style={{ flex: 1, height: '400px', width: '50%' }}>
+            <ReactECharts option={getStarbucksCostOption()} style={{ height: '100%', width: '100%' }} />
+          </div>
+          <div style={{ flex: 1, paddingLeft: '40px' }}>
+            <div className="content-body-text" style={{ fontSize: '21px', lineHeight: '1.8', color: '#4B3621' }}>
+              <p>
+                在成本端，2022—2025 年间，其门店运营费用和产品分销成本占比始终处于较高水平，且并未随门店增加而显著下降。由此可见，星巴克并未建立起以规模化降本为核心的价格竞争能力，在价格敏感度不断上升的市场环境中，其经营模式对长期价格战的适应性相对受限。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Block 2: Intro to City Charts */}
       <FullWidthText>
-        <p style={{ fontWeight: 'bold', marginBottom: '1em' }}>
+        <p style={{ fontWeight: 'bold', marginBottom: '1em', fontSize: '21px', textAlign: 'center', marginTop: '175px' }}>
           两个品牌在城市层级上的布局差异，直接对应了各自对价格竞争和成本控制的承受能力。
         </p>
       </FullWidthText>
 
-      {/* Scrolly Group 2: City Charts */}
+      {/* Luckin Section: Image 8 (Left) + Chart (Right) */}
+      <div style={{
+        width: '100vw',
+        marginLeft: 'calc(50% - 50vw)',
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: '60px'
+      }}>
+        {/* Left: Image 8 */}
+        <div style={{ width: '55%', position: 'relative' }}>
+          <img src={image8} alt="" style={{ 
+            display: 'block', 
+            width: '170%', // Scaled 1.7x from 100%
+            height: '140%', // Scaled 1.4x from auto (relative to container width aspect if possible, but here height usually refers to scale)
+            maxWidth: 'none',
+            objectFit: 'cover' // Ensure it covers the area if needed, or 'fill' depending on desired distortion
+          }} />
+        </div>
+        
+        {/* Right: Luckin Chart */}
+        <div style={{ width: 'calc(45% + 150px)', marginLeft: '-150px', height: '500px', padding: '0 40px', boxSizing: 'border-box', position: 'relative', zIndex: 1 }}>
+          <ResponsiveLuckinCityChart />
+        </div>
+      </div>
+
+      {/* Luckin Text */}
+      <FullWidthText>
+        <p>
+          瑞幸的门店分布明显更加分散，其增长重心持续向二线及以下城市外移。2023—2024 年间，瑞幸在二线、三线及以下城市的门店占比合计已超过一半，且低线城市占比仍在上升。这种布局意味着更低的租金、人力和运营成本，也为高密度铺店和标准化复制提供了空间条件，使规模化降本在空间层面具备可行性。
+        </p>
+      </FullWidthText>
+
+      {/* Scrolly Group 2: City Charts (Starbucks Only) */}
       <ScrollyGroup items={[
-        {
-          text: (
-            <p>
-              瑞幸的门店分布明显更加分散，其增长重心持续向二线及以下城市外移。2023—2024 年间，瑞幸在二线、三线及以下城市的门店占比合计已超过一半，且低线城市占比仍在上升。这种布局意味着更低的租金、人力和运营成本，也为高密度铺店和标准化复制提供了空间条件，使规模化降本在空间层面具备可行性。
-            </p>
-          ),
-          chart: <ResponsiveLuckinCityChart />
-        },
         {
           text: (
             <p>
