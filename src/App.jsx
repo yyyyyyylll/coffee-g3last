@@ -15,6 +15,7 @@ import pageOneDecoration from './assets/part1 素材/3(左下角下标).png';
 import pageOneDecoration2 from './assets/part1 素材/4.png';
 import pageOneDecoration3 from './assets/part1 素材/5.png';
 import pageOneDecoration6 from './assets/part1 素材/6.png';
+import pageOneDecoration7 from './assets/part1 素材/7.png';
 
 // Data for Scrollytelling Sections
 const SCROLLY_SECTIONS = [
@@ -481,7 +482,7 @@ function App() {
                         lineHeight: '2',
                         position: 'relative',
                         zIndex: 1,
-                        top: section.id === 'proportion' ? '-40px' : (section.id === 'comparison' ? '-30px' : (section.id === 'store-count' ? '-40px' : (section.id === 'city' ? '60px' : '0')))
+                        top: section.id === 'proportion' ? '-40px' : (section.id === 'comparison' ? '-30px' : (section.id === 'store-count' ? '-40px' : (section.id === 'city' ? '20px' : '0')))
                     }}>
                         {section.text}
                     </p>
@@ -587,27 +588,22 @@ function App() {
                     </div>
                 </div>
             )}
+
             </React.Fragment>
         ))}
       </div>
 
       {/* Section 8: Conclusion Text (Outro) - Sticky Wrapper */}
-      <div className="outro-sticky-wrapper">
-        <div className="content-container outro-section">
-          <div className="content-image-wrapper">
-            <img src="/src/assets/store.png" alt="Coffee Store" className="content-image" />
-          </div>
-          <div className="content-text-wrapper">
-            <p className="content-body-text" style={{ 
-                color: '#f0e7da', 
-                fontFamily: "'SimSun', 'Songti SC', serif", 
-                fontSize: '17.5px', 
-                lineHeight: '2' 
-            }}>
-              综合来看，中国咖啡行业的快速扩张并非偶然，在整体消费增速放缓的背景下，呈现出一条与宏观趋势并不完全同步的增长曲线。这一变化指向一个值得追问的问题——在消费环境趋紧、支出选择更谨慎的情况下，为什么咖啡，尤其是现制咖啡，反而获得了更强的生命力？要理解这一现象，不能仅停留在表面的规模和数量层面，需要进一步深入消费逻辑本身。据此，我们聚焦消费降级与情绪经济两个维度，尝试拆解它们如何共同塑造近年来中国咖啡行业的增长路径。
-            </p>
-          </div>
-        </div>
+      <div className="outro-sticky-wrapper" style={{ padding: 0 }}>
+        <img 
+            src={pageOneDecoration7} 
+            alt="Transition Decoration" 
+            style={{ 
+                width: '100vw', 
+                height: '100vh', 
+                objectFit: 'cover' 
+            }} 
+        />
       </div>
 
       {/* Section 9: Cover Image (bg1.png) - Slides over */}
