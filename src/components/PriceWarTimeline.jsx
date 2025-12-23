@@ -50,7 +50,7 @@ const PriceWarTimeline = () => {
 
       // Calculate active index based on scroll position + viewport offset
       // We want the item roughly in the center (or slightly left) to be active
-      const itemWidth = 500; // Width of one section as defined in CSS
+      const itemWidth = 600; // Width of one section as defined in CSS
       const centerOffset = window.innerWidth / 2;
       
       // Calculate which item is closest to the center
@@ -129,10 +129,10 @@ const PriceWarTimeline = () => {
             <div className={`content-card ${isTop ? 'top' : 'bottom'} ${isActive ? 'active' : `inactive-${isTop ? 'top' : 'bottom'}`}`}>
                 
                 {/* Price Badge Popping Effect */}
-                <PriceBadge price={event.priceTag} active={isCurrent} position={isTop ? 'top' : 'bottom'} />
+                <PriceBadge price={event.priceTag} active={isActive} position={isTop ? 'top' : 'bottom'} />
 
                 {/* Brand Name - Outline to Fill Animation */}
-                <div style={{ position: 'relative', marginBottom: '0.5rem' }}>
+                <div style={{ position: 'relative', marginBottom: '0' }}>
                     {event.brands.map((brand, i) => (
                         <h2 key={i} className="brand-name">
                             {/* Filled Version Overlay */}
@@ -160,7 +160,7 @@ const PriceWarTimeline = () => {
                 {/* Major Event Crown */}
                 {event.isMajor && (
                     <div className={`crown-icon ${isActive ? 'active' : 'inactive'}`}>
-                        <Crown size={100} strokeWidth={1} />
+                        <Crown size={60} strokeWidth={1} />
                     </div>
                 )}
             </div>
