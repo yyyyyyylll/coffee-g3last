@@ -6,6 +6,7 @@ import ComparisonChartSection from './components/ComparisonChartSection';
 import StoreCountChartSection from './components/StoreCountChartSection';
 import ProvinceBarChartSection from './components/ProvinceBarChartSection';
 import CityPieChartSection from './components/CityPieChartSection';
+import PageTwo from './components/PageTwo';
 
 // Data for Scrollytelling Sections
 const SCROLLY_SECTIONS = [
@@ -45,6 +46,8 @@ function App() {
   const [expanded, setExpanded] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
   const contentRef = useRef(null);
+  const coverSectionRef = useRef(null);
+  const canvasRef = useRef(null);
   const touchStart = useRef(0);
   
   // Refs for intersection observer
@@ -116,6 +119,76 @@ function App() {
     };
   }, [expanded]); // Re-run when expanded changes to attach to correct root
 
+  // Background Image Canvas Logic
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const container = coverSectionRef.current;
+    if (!canvas || !container) return;
+
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.src = '/src/assets/bg1.png';
+
+    const draw = () => {
+      const containerWidth = container.offsetWidth;
+      const containerHeight = container.offsetHeight;
+      
+      canvas.width = containerWidth;
+      canvas.height = containerHeight;
+
+      const imgW = img.naturalWidth;
+      const imgH = img.naturalHeight;
+      
+      // Scale image to fit width
+      const scale = containerWidth / imgW;
+      const scaledImgH = imgH * scale;
+      
+      // Draw Main Image
+      ctx.drawImage(img, 0, 0, containerWidth, scaledImgH);
+      
+      // Prepare Slice (Bottom 10%)
+      const sliceRatio = 0.1; 
+      const sliceH_source = imgH * sliceRatio;
+      const sliceH_draw = scaledImgH * sliceRatio;
+      const sliceY_source = imgH - sliceH_source;
+      
+      // Overlap: 10% of the slice height
+      const overlap = sliceH_draw * 0.10;
+      
+      // Start drawing slices from the bottom of the main image
+      // First slice starts at: scaledImgH - overlap
+      // We start loop from there.
+      let currentY = scaledImgH - overlap;
+      
+      // Limit loop to avoid browser hang if overlap is 0 or negative (safety)
+      if (sliceH_draw <= overlap) return; 
+
+      while (currentY < containerHeight) {
+        ctx.drawImage(
+          img,
+          0, sliceY_source, imgW, sliceH_source, // Source: bottom 10%
+          0, currentY, containerWidth, sliceH_draw // Destination
+        );
+        
+        // Next Y
+        currentY += (sliceH_draw - overlap);
+      }
+    };
+
+    if (img.complete) {
+      draw();
+    } else {
+      img.onload = draw;
+    }
+
+    const observer = new ResizeObserver(draw);
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   const MainContent = (
     <div className="main-scroll-container">
       {/* Section 1: Book Image (Intro) - Normal Scroll */}
@@ -163,16 +236,39 @@ function App() {
         </div>
       </div>
 
-      {/* Section 8: Conclusion Text (Outro) - Normal Scroll */}
-      <div className="content-container outro-section" style={{ minHeight: '50vh' }}>
-        <div className="content-image-wrapper">
-          <img src="/src/assets/store.png" alt="Coffee Store" className="content-image" />
+      {/* Section 8: Conclusion Text (Outro) - Sticky Wrapper */}
+      <div className="outro-sticky-wrapper">
+        <div className="content-container outro-section">
+          <div className="content-image-wrapper">
+            <img src="/src/assets/store.png" alt="Coffee Store" className="content-image" />
+          </div>
+          <div className="content-text-wrapper">
+            <p className="content-body-text">
+              综合来看，中国咖啡行业的快速扩张并非偶然，在整体消费增速放缓的背景下，呈现出一条与宏观趋势并不完全同步的增长曲线。这一变化指向一个值得追问的问题——在消费环境趋紧、支出选择更谨慎的情况下，为什么咖啡，尤其是现制咖啡，反而获得了更强的生命力？要理解这一现象，不能仅停留在表面的规模和数量层面，需要进一步深入消费逻辑本身。据此，我们聚焦消费降级与情绪经济两个维度，尝试拆解它们如何共同塑造近年来中国咖啡行业的增长路径。
+            </p>
+          </div>
         </div>
-        <div className="content-text-wrapper">
-          <p className="content-body-text">
-            综合来看，中国咖啡行业的快速扩张并非偶然，在整体消费增速放缓的背景下，呈现出一条与宏观趋势并不完全同步的增长曲线。这一变化指向一个值得追问的问题——在消费环境趋紧、支出选择更谨慎的情况下，为什么咖啡，尤其是现制咖啡，反而获得了更强的生命力？要理解这一现象，不能仅停留在表面的规模和数量层面，需要进一步深入消费逻辑本身。据此，我们聚焦消费降级与情绪经济两个维度，尝试拆解它们如何共同塑造近年来中国咖啡行业的增长路径。
-          </p>
-        </div>
+      </div>
+
+      {/* Section 9: Cover Image (bg1.png) - Slides over */}
+      <div 
+        className="cover-section"
+        ref={coverSectionRef}
+        style={{ position: 'relative' }} 
+      >
+        <canvas 
+          ref={canvasRef}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 0,
+            pointerEvents: 'none'
+          }}
+        />
+        <PageTwo />
       </div>
     </div>
   );

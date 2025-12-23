@@ -526,3 +526,104 @@ html, body {
     display: block;
   }
 }
+
+/* Outro Sticky Wrapper */
+.outro-sticky-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--coffee-brown); /* Match main content background */
+}
+
+/* Cover Section */
+.cover-section {
+  position: relative;
+  z-index: 2; /* Higher than outro */
+  width: 100%;
+  min-height: 100vh; /* Ensure it can fully cover the screen */
+  height: auto;      /* Allow to grow based on image height */
+  background-color: transparent; /* Allow Page 1 to show through transparent parts of image */
+  display: block;    /* Ensure image starts from top */
+}
+
+.cover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.page-two-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 30vh; /* Adjust based on transparent area of bg1.png */
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 10vh;
+  color: var(--coffee-brown); /* Assuming dark text on light paper background */
+}
+
+.page-two-content .section-title {
+  font-family: "SimSun", "Songti SC", serif;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.page-two-content .intro-text {
+  font-family: "SimSun", "Songti SC", serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  text-indent: 2em;
+}
+
+.page-two-content .subsection-title {
+  font-family: "SimSun", "Songti SC", serif;
+  font-size: 1.8rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-two-content p {
+  font-family: "SimSun", "Songti SC", serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.media-placeholder {
+  width: 100%;
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.media-grid {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+  justify-content: center;
+}
+
+.placeholder-box {
+  background-color: rgba(0,0,0,0.1);
+  border: 2px dashed #ccc;
+  padding: 2rem;
+  min-width: 200px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-weight: bold;
+}
