@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
 import StickyWordCloudSection from './StickyWordCloudSection';
+import CollabCardStack from './CollabCardStack';
 // import CollabFrequencyChart from './CollabFrequencyChart';
 import {
   getLuckinOfficialWordCloudOption,
@@ -96,6 +97,8 @@ const PageThree = () => {
             随着现制咖啡价格持续下探，品牌在营销中不再只强调风味或配方，而是通过IP联名、限定活动等方式，为产品叠加文化与情感意涵，塑造更强的品牌吸引力与用户黏性。<br/><br/>
             从星巴克与瑞幸这两家代表性企业来看，联名与限定活动正从偶发性的营销事件，转变为常态化的产品策略。数据显示，星巴克自2022年起明显提高了联名与限定活动的频率。瑞幸的节奏则更为密集，近四年间，其联名活动频率更高，截至2025年11月，瑞幸本年度联名及限定次数达47次，月均超过4次。联名已不再是“试水”，而成为可复制、可预期的上新方式。
         </div>
+
+        <CollabCardStack />
 
         {/* Placeholder for future chart */}
         <div style={{
