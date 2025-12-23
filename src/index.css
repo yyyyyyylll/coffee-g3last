@@ -358,8 +358,8 @@ html, body {
 }
 
 .content-image-wrapper {
-  width: 60%;
-  flex: 0 0 60%;
+  width: 50%;
+  flex: 0 0 50%;
   display: flex;
   justify-content: center; /* Center image in its space */
   padding-right: 0;
@@ -376,8 +376,8 @@ html, body {
 }
 
 .content-text-wrapper {
-  width: 40%;
-  flex: 0 0 40%;
+  width: 50%;
+  flex: 0 0 50%;
   text-align: left;
   padding-left: 2rem; /* Add some spacing between image and text */
 }

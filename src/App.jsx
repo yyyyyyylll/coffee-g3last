@@ -9,6 +9,7 @@ import CityPieChartSection from './components/CityPieChartSection';
 import PageTwo from './components/PageTwo';
 import PageThree from './components/PageThree';
 import coffeeCup from './assets/coffee-cup.png';
+import title1 from './assets/title1.png';
 
 // Data for Scrollytelling Sections
 const SCROLLY_SECTIONS = [
@@ -386,14 +387,20 @@ function App() {
   const MainContent = (
     <div className="main-scroll-container">
       {/* Section 1: Book Image (Intro) - Normal Scroll */}
-      <div className="content-container intro-section" style={{ minHeight: '80vh' }}>
-        <div className="content-image-wrapper">
-          <img src="/src/assets/book.png" alt="Coffee History Book" className="content-image" />
+      <div className="intro-section-wrapper" style={{ minHeight: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '0', marginBottom: '-4rem' }}>
+          <img src={title1} alt="Main Title" style={{ width: '45%', height: 'auto' }} />
         </div>
-        <div className="content-text-wrapper">
-          <p className="content-body-text">
-            很长一段时间里，咖啡在中国并不属于日常消费的中心位置，它更多集中在少数城市和人群中，带有明显的场合属性。但近几年，这种距离正在被不断拉近，咖啡变得更容易被买到、更能够买得起，更频繁地进入日常生活。从消费频率到市场规模，从门店密度到城市覆盖，咖啡在中国的扩张呈现出一条持续上行的曲线。这条曲线背后，逐渐显现出一个体量庞大、结构复杂、正在快速演化的中国咖啡行业。
-          </p>
+        
+        <div className="content-container intro-section" style={{ minHeight: 'auto', paddingTop: '0', marginTop: '-2rem' }}>
+          <div className="content-image-wrapper">
+            <img src="/src/assets/book.png" alt="Coffee History Book" className="content-image" />
+          </div>
+          <div className="content-text-wrapper">
+            <p className="content-body-text">
+              很长一段时间里，咖啡在中国并不属于日常消费的中心位置，它更多集中在少数城市和人群中，带有明显的场合属性。但近几年，这种距离正在被不断拉近，咖啡变得更容易被买到、更能够买得起，更频繁地进入日常生活。从消费频率到市场规模，从门店密度到城市覆盖，咖啡在中国的扩张呈现出一条持续上行的曲线。这条曲线背后，逐渐显现出一个体量庞大、结构复杂、正在快速演化的中国咖啡行业。
+            </p>
+          </div>
         </div>
       </div>
 
@@ -487,7 +494,11 @@ function App() {
           className="pull-text-indicator" 
           style={{ 
             opacity: expanded ? 0 : 1,
-            transition: 'opacity 0.3s',
+            height: expanded ? 0 : 'auto',
+            marginTop: expanded ? 0 : '30px',
+            marginBottom: expanded ? 0 : '20px',
+            overflow: 'hidden',
+            transition: 'all 0.5s',
             cursor: 'pointer' 
           }}
           onClick={() => setExpanded(true)}
@@ -496,7 +507,7 @@ function App() {
              Pull to Explore 
             <span className="arrow-icon">↑</span>
         </div>
-        <div className="slider-content">
+        <div className="slider-content" style={{ paddingTop: expanded ? '0' : '4rem', transition: 'padding-top 0.5s' }}>
            {MainContent}
         </div>
       </section>
