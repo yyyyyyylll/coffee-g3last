@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactECharts from 'echarts-for-react';
+import coffeeCup from '../assets/coffee-cup.png';
 import PriceWarTimeline from './PriceWarTimeline';
 import {
   getLuckinRevenueOption,
@@ -119,9 +120,11 @@ const ScrollyGroup = ({ items }) => {
   );
 };
 
-const PageTwo = () => {
-  return (
-    <div className="page-two-content" style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto', width: '85%' }}>
+const PageTwo = ({ onCupRef, hideCup = false }) => {
+  // Cup is now handled by App.jsx floating element during transition
+  const opacity = hideCup ? 0 : 1;
+   return (
+     <div className="page-two-content" style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto', width: '85%' }}>
       {/* Intro Section */}
       <h2 className="section-title" style={{ fontSize: '32px', fontWeight: 'bold', marginTop: '50vh', marginBottom: '20px', textAlign: 'center' }}>二、消费降级：价格成为关键变量</h2>
       <p className="intro-text" style={{ fontSize: '18px', lineHeight: '1.8', marginBottom: '40px', textAlign: 'center', color: '#4B3621' }}>
@@ -323,6 +326,45 @@ const PageTwo = () => {
           </p>
         </div>
       </FullWidthText>
+
+      {/* Transition Trigger Element */}
+      <div 
+        className="transition-trigger-container" 
+        style={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center', 
+          marginTop: '80px',
+          marginBottom: '30vh',
+          cursor: 'pointer'
+        }}
+      >
+        <div 
+          ref={onCupRef}
+          className="coffee-cup-trigger"
+          style={{
+            position: 'relative',
+            width: '100px',
+            height: '100px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            opacity: opacity,
+            transition: 'opacity 0.2s'
+          }}
+        >
+          <img 
+            src={coffeeCup} 
+            alt="Next Chapter" 
+            style={{ 
+              width: '100%', 
+              height: 'auto',
+              objectFit: 'contain'
+            }} 
+          />
+          {/* Pulse effect or hint could go here */}
+        </div>
+      </div>
     </div>
   );
 };

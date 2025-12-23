@@ -7,6 +7,8 @@ import StoreCountChartSection from './components/StoreCountChartSection';
 import ProvinceBarChartSection from './components/ProvinceBarChartSection';
 import CityPieChartSection from './components/CityPieChartSection';
 import PageTwo from './components/PageTwo';
+import PageThree from './components/PageThree';
+import coffeeCup from './assets/coffee-cup.png';
 
 // Data for Scrollytelling Sections
 const SCROLLY_SECTIONS = [
@@ -45,38 +47,230 @@ const SCROLLY_SECTIONS = [
 function App() {
   const [expanded, setExpanded] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
+  const [revealRadius, setRevealRadius] = useState(0);
+  const [maxRadius, setMaxRadius] = useState(0);
+  const [clipCenter, setClipCenter] = useState({ x: 0, y: 0 });
+  
   const contentRef = useRef(null);
   const coverSectionRef = useRef(null);
   const canvasRef = useRef(null);
-  const touchStart = useRef(0);
+  const lastTouchY = useRef(0);
+  const cupRef = useRef(null);
+  const pageThreeRef = useRef(null);
   
+  // Refs for animation loop
+  const targetRadius = useRef(0);
+  const currentRadius = useRef(0);
+  const requestRef = useRef();
+
   // Refs for intersection observer
   const textRefs = useRef([]);
 
   useEffect(() => {
+    const updateMaxRadius = () => {
+      setMaxRadius(Math.hypot(window.innerWidth, window.innerHeight));
+    };
+    updateMaxRadius();
+    window.addEventListener('resize', updateMaxRadius);
+    return () => window.removeEventListener('resize', updateMaxRadius);
+  }, []);
+
+  // Animation Loop for Smooth Damping
+  useEffect(() => {
+    const animate = () => {
+      // Linear Interpolation (Lerp): Move current towards target by 10% each frame
+      // Adjust the 0.1 factor for speed (higher = faster, lower = smoother)
+      currentRadius.current += (targetRadius.current - currentRadius.current) * 0.1;
+      
+      // Stop updating if close enough to save resources
+      if (Math.abs(targetRadius.current - currentRadius.current) < 0.5) {
+         currentRadius.current = targetRadius.current;
+      }
+      
+      setRevealRadius(currentRadius.current);
+      requestRef.current = requestAnimationFrame(animate);
+    };
+    
+    requestRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(requestRef.current);
+  }, []);
+
+  useEffect(() => {
     const handleWheel = (e) => {
+      // 1. Hero -> PageTwo
       if (!expanded && e.deltaY > 50) {
         setExpanded(true);
+        return;
       }
-      if (expanded && contentRef.current && contentRef.current.scrollTop === 0 && e.deltaY < -50) {
+      
+      // 2. PageTwo -> Hero
+      if (expanded && targetRadius.current <= 0 && contentRef.current && contentRef.current.scrollTop === 0 && e.deltaY < -50) {
         setExpanded(false);
+        return;
+      }
+
+      // 3. PageTwo -> PageThree (Continuous Transition)
+      if (expanded) {
+        // Check Cup Position
+         let isCupReady = false;
+         if (cupRef.current) {
+             const rect = cupRef.current.getBoundingClientRect();
+             // Trigger when cup center is near or above 65% of viewport height (slightly below center)
+             const cupCenterY = rect.top + rect.height / 2;
+             // Trigger when cup is in the upper 75% of the screen (easier to reach)
+             // Adjusted to ensure it triggers even with reduced bottom margin
+             const triggerThreshold = window.innerHeight * 0.75;
+             isCupReady = cupCenterY <= triggerThreshold;
+         } else if (contentRef.current) {
+             // Fallback
+             const { scrollTop, scrollHeight, clientHeight } = contentRef.current;
+             isCupReady = scrollTop + clientHeight >= scrollHeight - 50;
+        }
+
+        // Initialize clip center if starting transition
+        if (targetRadius.current <= 0 && isCupReady && e.deltaY > 0) {
+             if (cupRef.current) {
+               const rect = cupRef.current.getBoundingClientRect();
+               const x = rect.left + rect.width / 2;
+               const y = rect.top + rect.height / 2;
+               setClipCenter({ x, y });
+             } else {
+               setClipCenter({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+             }
+        }
+
+        const isTransitioning = targetRadius.current > 0 && targetRadius.current < maxRadius;
+        const isFullyRevealed = targetRadius.current >= maxRadius;
+
+        // Case A: Transitioning (Circle growing or shrinking)
+        if (isTransitioning) {
+          e.preventDefault();
+          const sensitivity = 2.5;
+          targetRadius.current = Math.max(0, Math.min(maxRadius, targetRadius.current + e.deltaY * sensitivity));
+          return;
+        }
+
+        // Case B: Fully Revealed (Interacting with Page Three or shrinking back)
+        if (isFullyRevealed) {
+          // If PageThree is at top and scrolling up -> Shrink circle
+          if (pageThreeRef.current && pageThreeRef.current.scrollTop <= 0 && e.deltaY < 0) {
+             e.preventDefault();
+             const sensitivity = 2.5;
+             targetRadius.current = Math.max(0, targetRadius.current + e.deltaY * sensitivity);
+          }
+          // Else let PageThree scroll naturally
+          return;
+        }
+
+        // Case C: Start growing
+        if (targetRadius.current <= 0 && isCupReady && e.deltaY > 0) {
+           e.preventDefault();
+           const sensitivity = 2.5;
+           targetRadius.current = Math.max(0, Math.min(maxRadius, e.deltaY * sensitivity));
+        }
       }
     };
 
     const handleTouchStart = (e) => {
-      touchStart.current = e.touches[0].clientY;
+      lastTouchY.current = e.touches[0].clientY;
     };
 
     const handleTouchMove = (e) => {
-      const touchY = e.touches[0].clientY;
-      const deltaY = touchStart.current - touchY;
+      const currentY = e.touches[0].clientY;
+      const deltaY = lastTouchY.current - currentY; // Drag up = positive delta
+      lastTouchY.current = currentY;
+      
       if (!expanded && deltaY > 50) {
         setExpanded(true);
+        return; // Consumed
       }
-      if (expanded && contentRef.current && contentRef.current.scrollTop === 0 && deltaY < -50) {
-        setExpanded(false);
+      
+      if (expanded) {
+         // Check Cup Position
+         let isCupReady = false;
+         if (cupRef.current) {
+             const rect = cupRef.current.getBoundingClientRect();
+             const cupCenterY = rect.top + rect.height / 2;
+             const triggerThreshold = window.innerHeight * 0.75;
+             isCupReady = cupCenterY <= triggerThreshold;
+         } else if (contentRef.current) {
+             const { scrollTop, scrollHeight, clientHeight } = contentRef.current;
+             isCupReady = scrollTop + clientHeight >= scrollHeight - 50;
+         }
+
+         // Initialize center if starting
+         if (targetRadius.current <= 0 && isCupReady && deltaY > 0) {
+            if (cupRef.current) {
+                const rect = cupRef.current.getBoundingClientRect();
+                setClipCenter({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+            } else {
+                setClipCenter({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+            }
+         }
+
+         const isTransitioning = targetRadius.current > 0 && targetRadius.current < maxRadius;
+         const isFullyRevealed = targetRadius.current >= maxRadius;
+
+         if (isTransitioning) {
+             // Prevent default done via passive: false in listener options
+             if (e.cancelable) e.preventDefault();
+             const sensitivity = 2.5;
+             targetRadius.current = Math.max(0, Math.min(maxRadius, targetRadius.current + deltaY * sensitivity));
+             return;
+         }
+
+         if (isFullyRevealed) {
+             if (pageThreeRef.current && pageThreeRef.current.scrollTop <= 0 && deltaY < 0) {
+                 if (e.cancelable) e.preventDefault();
+                 const sensitivity = 2.5;
+                 targetRadius.current = Math.max(0, targetRadius.current + deltaY * sensitivity);
+             }
+             return;
+         }
+
+         if (targetRadius.current <= 0 && isCupReady && deltaY > 0) {
+             if (e.cancelable) e.preventDefault();
+             const sensitivity = 2.5;
+             targetRadius.current = Math.max(0, Math.min(maxRadius, deltaY * sensitivity));
+         }
+         
+         // Standard PageTwo -> Hero logic
+         if (targetRadius.current <= 0 && contentRef.current && contentRef.current.scrollTop === 0 && deltaY < -50) {
+            setExpanded(false);
+         }
       }
     };
+    
+    // Auto-expand on click (optional fallback)
+    const triggerTransition = () => {
+       // ... existing logic but using animate frame or interval? 
+       // For now let's just jump or animate manually.
+       // User asked for continuous state, so maybe click just starts it?
+       // Let's implement a smooth auto-expand for click
+       let start = null;
+       const duration = 800;
+       const initialRadius = targetRadius.current;
+       const target = maxRadius;
+       
+       if (cupRef.current) {
+            const rect = cupRef.current.getBoundingClientRect();
+            setClipCenter({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+       }
+
+       const animate = (timestamp) => {
+          if (!start) start = timestamp;
+          const progress = Math.min((timestamp - start) / duration, 1);
+          // Ease in out
+          const ease = progress < .5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
+          targetRadius.current = initialRadius + (target - initialRadius) * ease;
+          
+          if (progress < 1) {
+             requestAnimationFrame(animate);
+          }
+       };
+       requestAnimationFrame(animate);
+    };
+    // Expose triggerTransition if needed, but primarily logic is in handlers
 
     window.addEventListener('wheel', handleWheel, { passive: false });
     window.addEventListener('touchstart', handleTouchStart, { passive: false });
@@ -87,7 +281,7 @@ function App() {
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
     };
-  }, [expanded]);
+  }, [expanded, maxRadius]);
 
   // Intersection Observer setup
   useEffect(() => {
@@ -268,7 +462,10 @@ function App() {
             pointerEvents: 'none'
           }}
         />
-        <PageTwo />
+        <PageTwo 
+          onCupRef={cupRef} 
+          hideCup={revealRadius > 0}
+        />
       </div>
     </div>
   );
@@ -282,6 +479,9 @@ function App() {
       <section 
         className={`main-content-fixed ${expanded ? 'expanded' : ''}`}
         ref={contentRef}
+        style={{ 
+           overflowY: revealRadius > 0 ? 'hidden' : 'auto', // Disable scroll during/after transition
+        }}
       >
         <div 
           className="pull-text-indicator" 
@@ -300,6 +500,58 @@ function App() {
            {MainContent}
         </div>
       </section>
+
+      {/* Page Three Overlay */}
+      <div 
+        ref={pageThreeRef}
+        className="page-three-overlay"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          zIndex: 100,
+          pointerEvents: revealRadius >= maxRadius ? 'auto' : 'none',
+          clipPath: `circle(${revealRadius}px at ${clipCenter.x}px ${clipCenter.y}px)`,
+          transition: 'none', // Continuous update
+          visibility: revealRadius > 0 ? 'visible' : 'hidden',
+          overflowY: revealRadius >= maxRadius ? 'auto' : 'hidden'
+        }}
+      >
+        <PageThree />
+      </div>
+
+      {/* Floating Cup Transition Element */}
+      {revealRadius > 0 && (
+        <div 
+            className="floating-cup-transition"
+            style={{
+                position: 'fixed',
+                left: clipCenter.x,
+                top: clipCenter.y - revealRadius, // Moves up with the circle edge
+                width: '100px',
+                height: '100px',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 200, // Above PageThree (100)
+                opacity: Math.max(0, 1 - (revealRadius / (maxRadius * 0.8))),
+                pointerEvents: 'none',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}
+        >
+             <img 
+                src={coffeeCup} 
+                alt="Transition Cup" 
+                style={{ 
+                  width: '100%', 
+                  height: 'auto',
+                  objectFit: 'contain'
+                }} 
+              />
+        </div>
+      )}
     </div>
   );
 }
