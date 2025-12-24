@@ -8,6 +8,7 @@ import image5 from '../assets/part2-1素材/5.png';
 import image6 from '../assets/part2-1素材/6.png';
 import image7 from '../assets/part2-1素材/7.png';
 import image8 from '../assets/part2-1素材/8.png';
+import image9 from '../assets/part2-1素材/9.png';
 import PriceWarTimeline from './PriceWarTimeline';
 import {
   getLuckinRevenueOption,
@@ -290,7 +291,7 @@ const FullWidthText = ({ children }) => (
     width: '100%', 
     marginBottom: '60px', 
     fontSize: '21px', 
-    lineHeight: '1.8', 
+    lineHeight: '42px', 
     color: '#4B3621',
     textAlign: 'justify'
   }}>
@@ -311,7 +312,7 @@ const ScrollyGroup = ({ items }) => {
         }}>
           {/* Text Section */}
           <div style={{ flex: 1, paddingRight: '40px' }}>
-            <div className="content-body-text" style={{ fontSize: '21px', lineHeight: '1.8', color: '#4B3621' }}>
+            <div className="content-body-text" style={{ fontSize: '21px', lineHeight: '42px', color: '#4B3621' }}>
               {item.text}
             </div>
           </div>
@@ -335,10 +336,10 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
         <img src={title2} alt="消费降级" style={{ width: '1000px', height: 'auto' }} />
       </div>
       <div style={{ textAlign: 'center', marginBottom: '40px', color: '#4B3621', marginTop: '-200px' }}>
-        <p style={{ fontSize: '21px', lineHeight: '1.8', marginBottom: '0', textAlign: 'center' }}>
+        <p style={{ fontSize: '21px', lineHeight: '42px', marginBottom: '0', textAlign: 'center' }}>
           价格作为最直观的市场信号，与咖啡市场的高速增长紧密相连，成为推动市场渗透与重塑消费习惯的核心支点。
         </p>
-        <p style={{ fontSize: '21px', lineHeight: '1.8', marginTop: '0', textAlign: 'center' }}>
+        <p style={{ fontSize: '21px', lineHeight: '42px', marginTop: '0', textAlign: 'center' }}>
           这既体现在咖啡品牌的战略选择上，也反映在消费者端的需求变迁中。
         </p>
       </div>
@@ -359,13 +360,13 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
           color: '#4B3621',
           fontSize: '21px',
           letterSpacing: '2px',
-          lineHeight: '1.8',
+          lineHeight: '42px',
           textAlign: 'justify'
         }}>
-          <p style={{ marginBottom: '20px', fontSize: '21px', letterSpacing: '2px' }}>
+          <p style={{ marginBottom: '20px', fontSize: '21px', letterSpacing: '2px', lineHeight: '42px' }}>
             面对日益拥挤的咖啡赛道，低价成为品牌打开更广阔的消费市场的破局之刃。近年来，各大咖啡品牌的价格战已逐渐成为常态化竞争，其激烈与持久度远超外界想象。
           </p>
-          <p style={{ fontSize: '21px', letterSpacing: '2px' }}>
+          <p style={{ fontSize: '21px', letterSpacing: '2px', lineHeight: '42px' }}>
             库迪咖啡在2023年率先掀起了“9.9元”的低价浪潮；瑞幸咖啡迅速应战，将9.9元的优惠价格从活动限定推向常态化。幸运咖、皮爷咖啡等品牌也在2024年陆续加入战局。进入2025年，价格内卷愈演愈烈，即使是面向中高端市场的星巴克也罕见地调低了多款产品的价格。这表明低价已经从短期的营销战术变为长期的战略选择。
           </p>
         </div>
@@ -398,8 +399,8 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
             padding: '20px',
             zIndex: 20,
             color: '#4B3621',
-            fontSize: '21px',
-            lineHeight: '1.6',
+            fontSize: '18px',
+            lineHeight: '36px',
             fontWeight: 'normal',
             textAlign: 'justify',
             fontFamily: '"SimSun", "Songti SC", serif', // Added Songti font
@@ -429,8 +430,8 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
             padding: '20px',
             zIndex: 20,
             color: '#4B3621',
-            fontSize: '21px',
-            lineHeight: '1.6',
+            fontSize: '18px',
+            lineHeight: '36px',
             fontWeight: 'normal',
             textAlign: 'justify',
             fontFamily: '"SimSun", "Songti SC", serif',
@@ -490,7 +491,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
           margin: '0 auto',
           padding: '40px 0'
         }}>
-          <p style={{ fontSize: '21px', lineHeight: '1.8', textAlign: 'justify', textIndent: '2em', color: '#4B3621' }}>
+          <p style={{ fontSize: '21px', lineHeight: '42px', textAlign: 'justify', textIndent: '2em', color: '#4B3621' }}>
             与本土连锁通过规模扩张实现增长不同，星巴克在中国市场近几年的整体经营表现呈现出明显的承压态势。从净收入和利润看，近五年星巴克中国区的收入与盈利均出现波动式下滑，在其全球体系中的收入和利润占比也由高位逐步回落。这表明，星巴克在中国的增长动能正在减弱，原有依赖品牌溢价和稳定客群的商业模式，可能难以应对消费环境变化带来的压力。
           </p>
         </div>
@@ -523,7 +524,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
               position: 'absolute',
               left: 0,
               top: '50%',
-              transform: 'translateY(calc(-50% + 130px))',
+              transform: 'translateY(calc(-50% + 100px))',
               width: 'auto',
               height: '120%',
               maxHeight: 'none',
@@ -544,8 +545,8 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
            minHeight: '400px'
          }}>
             <div style={{ flex: 1, paddingRight: '40px' }}>
-              <div className="content-body-text" style={{ fontSize: '21px', lineHeight: '1.8', color: '#4B3621' }}>
-                <p>
+              <div className="content-body-text" style={{ color: '#4B3621', textAlign: 'justify' }}>
+                <p style={{ fontSize: '21px', lineHeight: '42px' }}>
                   进一步结合门店数据可以发现，尽管星巴克仍在持续开店，但其门店扩张节奏相对温和，未形成通过快速铺店摊薄成本的规模效应。
                 </p>
               </div>
@@ -596,8 +597,8 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
             <ReactECharts option={getStarbucksCostOption()} style={{ height: '100%', width: '100%' }} />
           </div>
           <div style={{ flex: 1, paddingLeft: '40px' }}>
-            <div className="content-body-text" style={{ fontSize: '21px', lineHeight: '1.8', color: '#4B3621' }}>
-              <p>
+            <div className="content-body-text" style={{ color: '#4B3621', textAlign: 'justify', fontFamily: '"SimSun", "Songti SC", serif' }}>
+              <p style={{ fontSize: '21px', lineHeight: '42px' }}>
                 在成本端，2022—2025 年间，其门店运营费用和产品分销成本占比始终处于较高水平，且并未随门店增加而显著下降。由此可见，星巴克并未建立起以规模化降本为核心的价格竞争能力，在价格敏感度不断上升的市场环境中，其经营模式对长期价格战的适应性相对受限。
               </p>
             </div>
@@ -618,52 +619,112 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
         marginLeft: 'calc(50% - 50vw)',
         display: 'flex',
         alignItems: 'center',
-        marginBottom: '60px'
+        marginBottom: '0px',
+        marginTop: '-150px'
       }}>
         {/* Left: Image 8 */}
-        <div style={{ width: '55%', position: 'relative' }}>
+        <div style={{ width: '55%', flexShrink: 0, position: 'relative', marginTop: '-100px' }}>
           <img src={image8} alt="" style={{ 
             display: 'block', 
-            width: '170%', // Scaled 1.7x from 100%
-            height: '140%', // Scaled 1.4x from auto (relative to container width aspect if possible, but here height usually refers to scale)
+            width: '187%', // Scaled 1.1x from 170%
+            height: '120%', // Scaled 6/7 from 140%
             maxWidth: 'none',
-            objectFit: 'cover' // Ensure it covers the area if needed, or 'fill' depending on desired distortion
+            objectFit: 'cover'
           }} />
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: 'calc(5% + 50px)',
+            transform: 'translateY(calc(-50% + 50px))',
+            width: 'calc(80% - 150px)',
+            color: '#4B3621',
+            fontSize: '21px',
+            lineHeight: '42px',
+            textAlign: 'justify',
+            zIndex: 10,
+            textIndent: '0',
+            fontFamily: '"SimSun", "Songti SC", serif'
+          }}>
+            瑞幸的门店分布明显更加分散，其增长重心持续向二线及以下城市外移。2024年，瑞幸在二线、三线及以下城市的门店占比合计已超过一半。这种布局意味着更低的租金和运营成本，也为高密度铺店和标准化复制提供了空间条件，使规模化降本在空间层面具备可行性。
+          </div>
         </div>
         
         {/* Right: Luckin Chart */}
-        <div style={{ width: 'calc(45% + 150px)', marginLeft: '-150px', height: '500px', padding: '0 40px', boxSizing: 'border-box', position: 'relative', zIndex: 1 }}>
+        <div style={{ width: 'calc(49.5% + 120px)', flexShrink: 0, marginLeft: '-100px', height: '500px', padding: '0 40px', boxSizing: 'border-box', position: 'relative', zIndex: 1, top: '20px' }}>
           <ResponsiveLuckinCityChart />
         </div>
       </div>
 
-      {/* Luckin Text */}
       <FullWidthText>
-        <p>
-          瑞幸的门店分布明显更加分散，其增长重心持续向二线及以下城市外移。2023—2024 年间，瑞幸在二线、三线及以下城市的门店占比合计已超过一半，且低线城市占比仍在上升。这种布局意味着更低的租金、人力和运营成本，也为高密度铺店和标准化复制提供了空间条件，使规模化降本在空间层面具备可行性。
+        <p style={{ fontWeight: 'bold', marginBottom: '1em', fontSize: '21px', textAlign: 'center', marginTop: '0px' }}>
+          两个品牌在城市层级上的布局差异，直接对应了各自对价格竞争和成本控制的承受能力。
         </p>
       </FullWidthText>
 
-      {/* Scrolly Group 2: City Charts (Starbucks Only) */}
-      <ScrollyGroup items={[
-        {
-          text: (
-            <p>
-              相比之下，星巴克的门店结构高度集中在高线城市。一线与新一线城市始终占据其门店布局的绝对主体，二线及以下城市占比明显偏低。这种空间选择虽然有利于维持品牌形象和客单价，但也意味着更高的固定成本和更弱的成本弹性。
-            </p>
-          ),
-          chart: <ResponsiveStarbucksCityChart />
-        }
-      ]} />
+      {/* Starbucks Section: Image 8 (Left) + Chart (Right) */}
+      <div style={{
+        width: '100vw',
+        marginLeft: 'calc(50% - 50vw)',
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: '60px',
+        marginTop: '-150px'
+      }}>
+        {/* Left: Image 8 (Reused) */}
+        <div style={{ width: '55%', flexShrink: 0, position: 'relative', marginTop: '-100px' }}>
+          <img src={image8} alt="" style={{ 
+            display: 'block', 
+            width: '187%', 
+            height: '120%', 
+            maxWidth: 'none',
+            objectFit: 'cover'
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: 'calc(5% + 50px)',
+            transform: 'translateY(calc(-50% + 50px))',
+            width: 'calc(80% - 150px)',
+            color: '#4B3621',
+            fontSize: '21px',
+            lineHeight: '42px',
+            textAlign: 'justify',
+            zIndex: 10,
+            textIndent: '0',
+            fontFamily: '"SimSun", "Songti SC", serif'
+          }}>
+            相比之下，星巴克的门店结构高度集中在高线城市。一线与新一线城市始终占据其门店布局的绝对主体，二线及以下城市占比明显偏低。这种空间选择虽然有利于维持品牌形象和客单价，但也意味着更高的固定成本和更弱的成本弹性。
+          </div>
+        </div>
+        
+        {/* Right: Starbucks Chart */}
+        <div style={{ width: 'calc(49.5% + 120px)', flexShrink: 0, marginLeft: '-100px', height: '500px', padding: '0 40px', boxSizing: 'border-box', position: 'relative', zIndex: 1, top: '20px' }}>
+          <ResponsiveStarbucksCityChart />
+        </div>
+      </div>
 
-      {/* Block 3: Conclusion 1 */}
-      <FullWidthText>
-        <div style={{ backgroundColor: '#f9f9f9', padding: '20px', borderRadius: '8px' }}>
-          <p>
-            对比不同品牌可以发现，这一轮价格战并非单纯降价，而是以降本为前提的长期策略。通过快速开店和标准化运营摊薄成本，并向低线城市下沉以降低租金与人力支出，咖啡品牌为低价提供了可持续支撑。降价只是结果，门店扩张与市场下沉才是其顺应消费降级的核心机制。
+      {/* Block 3: Conclusion 1 - Redesigned with Image 9 */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        width: '100vw',
+        marginLeft: 'calc(50% - 50vw)',
+        padding: '60px 0',
+        overflow: 'hidden',
+        marginTop: '-200px'
+      }}>
+        {/* Left: Image 9 */}
+        <div style={{ width: '50%', paddingLeft: '40px', boxSizing: 'border-box', overflow: 'hidden' }}>
+          <img src={image9} alt="" style={{ width: '100%', height: 'auto', display: 'block', transform: 'scale(1.6)', transformOrigin: 'left center' }} />
+        </div>
+        
+        {/* Right: Text */}
+        <div style={{ width: '50%', paddingLeft: '20px', paddingRight: '100px', boxSizing: 'border-box' }}>
+          <p style={{ fontSize: '21px', lineHeight: '42px', textAlign: 'justify', margin: 0 }}>
+            对比不同品牌可以发现，这一轮价格战并非单纯降价，而是以降本为前提的长期策略。通过快速开店和标准化运营摊薄成本，并向低线城市下沉以降低租金与人力支出，咖啡品牌为低价提供了可持续支撑。降价只是结果，门店扩张与市场下沉才是品牌顺应消费降级的核心机制。
           </p>
         </div>
-      </FullWidthText>
+      </div>
 
       {/* Block 4: Intro to Consumption */}
       <FullWidthText>

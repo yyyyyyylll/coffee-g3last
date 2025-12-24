@@ -580,7 +580,7 @@ function App() {
                         color: '#f0e7da', 
                         fontSize: '21px', 
                         letterSpacing: '1.5px',
-                        lineHeight: '1.8',
+                        lineHeight: '42px',
                         fontFamily: "'SimSun', 'Songti SC', serif",
                         fontWeight: 'bold'
                     }}>
