@@ -10,8 +10,9 @@ const CityPieChartSection = () => {
       top: 30,
       textStyle: {
         color: '#F0ECE5',
-        fontSize: 16,
-        fontWeight: 'bold'
+        fontSize: 21,
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+        fontWeight: 'normal'
       }
     },
     tooltip: {
@@ -53,8 +54,20 @@ const CityPieChartSection = () => {
   };
 
   return (
-    <div style={{ width: '100%', height: '500px' }}>
+    <div style={{ width: '100%', height: '500px', position: 'relative' }}>
       <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+      <div style={{
+        position: 'absolute',
+        bottom: '60px',
+        width: '100%',
+        textAlign: 'center',
+        fontSize: '14px',
+        color: '#F0ECE5',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+        fontWeight: 'normal'
+      }}>
+        （数据来源：窄门餐眼）
+      </div>
     </div>
   );
 };

@@ -39,7 +39,12 @@ export const getLuckinRevenueOption = () => ({
     text: '瑞幸2019-2024总净收入及增长率',
     left: 'center',
     top: 10,
-    textStyle: { color: '#000', fontSize: 16, fontWeight: 'bold' }
+    textStyle: {
+      color: '#000000',
+      fontSize: 21,
+      fontWeight: 'normal',
+      fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+    }
   },
 
   tooltip: {
@@ -133,7 +138,12 @@ export const getLuckinProfitOption = () => ({
     text: '瑞幸2019-2024利润及利润率',
     left: 'center',
     top: 10,
-    textStyle: { color: '#000', fontSize: 16, fontWeight: 'bold' }
+    textStyle: {
+      color: '#000000',
+      fontSize: 21,
+      fontWeight: 'normal',
+      fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+    }
   },
   tooltip: {
     trigger: 'axis',
@@ -197,7 +207,12 @@ export const getLuckinCostOption = () => ({
     text: '瑞幸2019-2024运营费用情况',
     left: 'center',
     top: 10,
-    textStyle: { color: '#000', fontSize: 16, fontWeight: 'bold' }
+    textStyle: {
+      color: '#000000',
+      fontSize: 21,
+      fontWeight: 'normal',
+      fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+    }
   },
   tooltip: {
     trigger: 'axis',
@@ -323,7 +338,12 @@ export const getStarbucksRevenueOption = () => ({
     text: '星巴克2019-2025中国净收入及占国际净收入比重',
     left: 'center',
     top: 10,
-    textStyle: { color: '#000', fontSize: 16, fontWeight: 'bold' }
+    textStyle: {
+      color: '#000000',
+      fontSize: 21,
+      fontWeight: 'normal',
+      fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+    }
   },
   tooltip: {
     trigger: 'axis',
@@ -383,7 +403,12 @@ export const getStarbucksProfitOption = () => ({
     text: '星巴克2019-2025利润情况及占全球利润比重',
     left: 'center',
     top: 10,
-    textStyle: { color: '#000', fontSize: 16, fontWeight: 'bold' }
+    textStyle: {
+      color: '#000000',
+      fontSize: 21,
+      fontWeight: 'normal',
+      fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+    }
   },
   tooltip: {
     trigger: 'axis',
@@ -443,7 +468,12 @@ export const getStarbucksStoreOption = () => ({
     text: '星巴克2017-2025中国门店总数及变化情况',
     left: 'center',
     top: 10,
-    textStyle: { color: '#000', fontSize: 16, fontWeight: 'bold' }
+    textStyle: {
+      color: '#000000',
+      fontSize: 21,
+      fontWeight: 'normal',
+      fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+    }
   },
   tooltip: {
     trigger: 'axis',
@@ -503,7 +533,12 @@ export const getStarbucksCostOption = () => ({
     text: '星巴克2022-2025运营费用情况',
     left: 'center',
     top: 10,
-    textStyle: { color: '#000', fontSize: 16, fontWeight: 'bold' }
+    textStyle: {
+      color: '#000000',
+      fontSize: 21,
+      fontWeight: 'normal',
+      fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+    }
   },
   tooltip: {
     trigger: 'axis',
@@ -632,7 +667,12 @@ export const getLuckinCityOption = (width = 600, height = 400) => {
       text: '2023-2024瑞幸城市分布情况', 
       left: 'center', 
       top: 10, 
-      textStyle: { color: '#000', fontSize: 16, fontWeight: 'bold' } 
+      textStyle: {
+        color: '#000000',
+        fontSize: 21,
+        fontWeight: 'normal',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+      } 
     },
     tooltip: { 
       trigger: 'axis', 
@@ -738,7 +778,12 @@ export const getStarbucksCityOption = (width = 600, height = 400) => {
       text: '2023-2024星巴克城市分布情况',
       left: 'center',
       top: 10,
-      textStyle: { color: '#000', fontSize: 16, fontWeight: 'bold' }
+      textStyle: {
+        color: '#000000',
+        fontSize: 21,
+        fontWeight: 'normal',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+      }
     },
     tooltip: {
       trigger: 'axis',
@@ -835,10 +880,10 @@ export const getFrequencyOption = () => {
       top: 10,
       itemGap: 15,
       textStyle: {
-        color: '#2f2f2f',
-        fontSize: 26,
-        fontWeight: 800,
-        fontFamily: 'system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans SC,Helvetica,Arial'
+        color: '#000000',
+        fontSize: 21,
+        fontWeight: 'normal',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif"
       },
       subtextStyle: { fontSize: 16, color: "#777", lineHeight: 22 }
     },
@@ -991,7 +1036,12 @@ export const getPriceAcceptanceOption = () => {
       subtext: "2024与2025对比（单位：%）",
       left: "center",
       top: 18,
-      textStyle: { fontSize: 28, fontWeight: 700, color: "#2c2c2c" },
+      textStyle: {
+        color: '#000000',
+        fontSize: 21,
+        fontWeight: 'normal',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+      },
       subtextStyle: { fontSize: 16, color: "#777", lineHeight: 22 }
     },
     grid: {
@@ -1086,7 +1136,12 @@ export const getMonthConsumptionOption = () => ({
     subtext: "2022,2024与2025对比（单位：%）",
     left: 'center',
     top: 5,
-    textStyle: { color: 'rgba(0,0,0,0.88)', fontSize: 20, fontWeight: 700 },
+    textStyle: {
+      color: '#000000',
+      fontSize: 21,
+      fontWeight: 'normal',
+      fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+    },
     subtextStyle: { fontSize: 12, color: "#777" }
   },
   grid: { left: 50, right: 20, top: 70, bottom: 80 },
@@ -1157,7 +1212,12 @@ export const getConsumptionScenesOption = () => {
       text: '消费者咖啡饮用场景分布',
       left: 'center',
       top: 3,
-      textStyle: { fontSize: 30, fontWeight: 700, color: '#1c1917' }
+      textStyle: {
+        color: '#000000',
+        fontSize: 21,
+        fontWeight: 'normal',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+      }
     },
     grid: { left: 40, right: 40, top: 80, bottom: 70 },
     xAxis: {
@@ -1252,7 +1312,12 @@ export const getLuckinOfficialWordCloudOption = () => {
       text: '瑞幸小红书官号内容词频图',
       left: 'center',
       top: 10,
-      textStyle: { fontSize: 15, fontWeight: 'normal', color: '#333' }
+      textStyle: {
+        color: '#000000',
+        fontSize: 21,
+        fontWeight: 'normal',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+      }
     },
     tooltip: { 
       trigger: 'item',
@@ -1287,7 +1352,12 @@ export const getStarbucksOfficialWordCloudOption = () => {
       text: '星巴克小红书官号内容词频图',
       left: 'center',
       top: 10,
-      textStyle: { fontSize: 15, fontWeight: 'normal', color: '#333' }
+      textStyle: {
+        color: '#000000',
+        fontSize: 21,
+        fontWeight: 'normal',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+      }
     },
     tooltip: { 
       trigger: 'item',
@@ -1296,7 +1366,7 @@ export const getStarbucksOfficialWordCloudOption = () => {
     series: [{
       type: 'wordCloud',
       shape: 'circle',
-      sizeRange: [12, 72],
+      sizeRange: [10, 56],
       rotationRange: [0, 0],
       rotationStep: 0,
       gridSize: 6,
@@ -1324,8 +1394,13 @@ export const getLuckinUserEmotionWordCloudOption = () => {
       left: 'center',
       top: 8,
       itemGap: 4,
-      textStyle: { fontSize: 15, fontWeight: 'normal', color: '#333' },
-      subtextStyle: { fontSize: 12, color: '#666' }
+      textStyle: {
+        color: '#000000',
+        fontSize: 21,
+        fontWeight: 'normal',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+      },
+      subtextStyle: { fontSize: 12, color: '#000000', fontFamily: "'SimHei', 'Heiti SC', sans-serif", fontWeight: 'normal' }
     },
     tooltip: { 
       trigger: 'item',
@@ -1362,8 +1437,13 @@ export const getStarbucksUserEmotionWordCloudOption = () => {
       left: 'center',
       top: 8,
       itemGap: 4,
-      textStyle: { fontSize: 15, fontWeight: 'normal', color: '#333' },
-      subtextStyle: { fontSize: 12, color: '#666' }
+      textStyle: {
+        color: '#000000',
+        fontSize: 21,
+        fontWeight: 'normal',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+      },
+      subtextStyle: { fontSize: 12, color: '#000000', fontFamily: "'SimHei', 'Heiti SC', sans-serif", fontWeight: 'normal' }
     },
     tooltip: { 
       trigger: 'item',
@@ -1398,7 +1478,12 @@ export const getLuckinWordCloudOption = () => {
       left: 'center',
       top: 8,
       itemGap: 4,
-      textStyle: { fontSize: 15, fontWeight: 'normal', color: '#4B3621' },
+      textStyle: {
+        color: '#000000',
+        fontSize: 21,
+        fontWeight: 'normal',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+      },
       subtextStyle: { fontSize: 12, color: '#5D4037' }
     },
     tooltip: { trigger: 'item', formatter: p => `${p.name}<br/>词频：${p.value}` },
@@ -1431,7 +1516,12 @@ export const getStarbucksWordCloudOption = () => {
       left: 'center',
       top: 8,
       itemGap: 4,
-      textStyle: { fontSize: 15, fontWeight: 'normal', color: '#333' },
+      textStyle: {
+        color: '#000000',
+        fontSize: 21,
+        fontWeight: 'normal',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif"
+      },
       subtextStyle: { fontSize: 12, color: '#666' }
     },
     tooltip: { trigger: 'item', formatter: p => `${p.name}<br/>词频：${p.value}` },

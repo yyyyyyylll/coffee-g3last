@@ -47,12 +47,12 @@ const TimelineChart = () => {
   };
 
   const titleStyle = {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    color: '#542410', // Coffee brown
-    marginBottom: '25px', // Increased margin slightly
+    fontSize: '21px',
+    fontWeight: 'normal',
+    color: '#000000',
+    marginBottom: '25px',
     textAlign: 'center',
-    // Removed textShadow
+    fontFamily: "'SimHei', 'Heiti SC', sans-serif"
   };
 
   const legendStyle = {
@@ -230,7 +230,14 @@ const TimelineChart = () => {
         })}
       </div>
 
-      <div style={{ textAlign: 'center', fontSize: '16px', color: '#8B4513', marginTop: '5px', opacity: 0.7 }}>
+      <div style={{
+        textAlign: 'center',
+        fontSize: '14px',
+        color: '#000000',
+        marginTop: '5px',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+        fontWeight: 'normal'
+      }}>
         数据来源: 星巴克&瑞幸微信公众号，2025年数据截至M11。
       </div>
     </div>

@@ -13,9 +13,10 @@ const ProportionChartSection = () => {
       text: '中国现制咖啡在整体咖啡市场中的比例（2020-2024E）',
       left: 'center',
       textStyle: {
-        fontSize: 16,
+        fontSize: 21,
         color: '#F0ECE5',
-        fontFamily: 'sans-serif',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif", // 黑体
+        fontWeight: 'normal',
         lineHeight: 24
       },
       top: 0
@@ -74,11 +75,11 @@ const ProportionChartSection = () => {
         name: '比例',
         type: 'line',
         itemStyle: {
-          color: '#87CEFA' // Light Sky Blue for visibility on dark background
+          color: '#FFB6C1' // Light Pink
         },
         lineStyle: {
           width: 3,
-          color: '#87CEFA'
+          color: '#FFB6C1'
         },
         data: chartData['比例']
       }
@@ -86,8 +87,13 @@ const ProportionChartSection = () => {
   };
 
   return (
-    <div style={{ width: '100%', height: '500px' }}>
-      <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ width: '100%', height: '500px' }}>
+        <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+      </div>
+      <div style={{ fontSize: '14px', color: '#F0ECE5', marginTop: '-30px', fontFamily: "'SimHei', 'Heiti SC', sans-serif", fontWeight: 'normal' }}>
+        （数据来源：餐宝典）
+      </div>
     </div>
   );
 };

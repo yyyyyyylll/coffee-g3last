@@ -668,7 +668,7 @@ function App() {
           style={{ 
             opacity: expanded ? 0 : 1,
             height: expanded ? 0 : 'auto',
-            marginTop: expanded ? 0 : '30px',
+            marginTop: expanded ? 0 : '15px',
             marginBottom: expanded ? 0 : '20px',
             overflow: 'hidden',
             transition: 'all 0.5s',

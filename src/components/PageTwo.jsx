@@ -297,7 +297,7 @@ const FullWidthText = ({ children, style }) => (
     marginBottom: '60px', 
     fontSize: '21px', 
     lineHeight: '42px', 
-    color: '#4B3621',
+    color: '#542410',
     textAlign: 'justify',
     ...style
   }}>
@@ -318,7 +318,7 @@ const ScrollyGroup = ({ items }) => {
         }}>
           {/* Text Section */}
           <div style={{ width: '40%', flexShrink: 0, paddingRight: '40px' }}>
-            <div className="content-body-text" style={{ fontSize: '21px', lineHeight: '42px', color: '#4B3621' }}>
+            <div className="content-body-text" style={{ fontSize: '21px', lineHeight: '42px', color: '#542410' }}>
               {item.text}
             </div>
           </div>
@@ -341,7 +341,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
       <div style={{ marginTop: 'calc(50vh - 200px)', marginBottom: '20px', display: 'flex', justifyContent: 'flex-end', marginRight: '-60px' }}>
         <img src={title2} alt="消费降级" style={{ width: '1000px', height: 'auto' }} />
       </div>
-      <div style={{ textAlign: 'center', marginBottom: '40px', color: '#4B3621', marginTop: '-200px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '40px', color: '#542410', marginTop: '-200px' }}>
         <p style={{ fontSize: '21px', lineHeight: '42px', marginBottom: '0', textAlign: 'center' }}>
           价格作为最直观的市场信号，与咖啡市场的高速增长紧密相连，成为推动市场渗透与重塑消费习惯的核心支点。
         </p>
@@ -363,7 +363,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
           right: '10%',
           transform: 'translateY(calc(-50% + 200px))',
           width: '45%',
-          color: '#4B3621',
+          color: '#542410',
           fontSize: '21px',
           letterSpacing: '2px',
           lineHeight: '42px',
@@ -404,7 +404,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
             width: '70%', // Adjusted width to 70%
             padding: '20px',
             zIndex: 20,
-            color: '#4B3621',
+            color: '#542410',
             fontSize: '18px',
             lineHeight: '36px',
             fontWeight: 'normal',
@@ -417,9 +417,29 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
         </div>
         <div style={{ width: '36%', flexShrink: 0, position: 'relative', zIndex: 30 }}>
           <ReactECharts option={getLuckinRevenueOption()} style={{ height: '100%', width: '100%' }} />
+          <div style={{
+            textAlign: 'center',
+            fontSize: '14px',
+            color: '#000000',
+            marginTop: '-40px',
+            fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+            fontWeight: 'normal'
+          }}>
+            （数据来源：瑞幸财报）
+          </div>
         </div>
         <div style={{ width: '36%', flexShrink: 0, marginLeft: '-3%', position: 'relative', zIndex: 30 }}>
           <ReactECharts option={getLuckinProfitOption()} style={{ height: '100%', width: '100%' }} />
+          <div style={{
+            textAlign: 'center',
+            fontSize: '14px',
+            color: '#000000',
+            marginTop: '-40px',
+            fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+            fontWeight: 'normal'
+          }}>
+            （数据来源：瑞幸财报）
+          </div>
         </div>
       </div>
 
@@ -435,7 +455,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
             width: '70%',
             padding: '20px',
             zIndex: 20,
-            color: '#4B3621',
+            color: '#542410',
             fontSize: '18px',
             lineHeight: '36px',
             fontWeight: 'normal',
@@ -448,6 +468,16 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
         </div>
         <div style={{ width: '50%', flexShrink: 0, position: 'relative', zIndex: 30, top: '25px' }}>
           <ReactECharts option={getLuckinCostOption()} style={{ height: '100%', width: '100%' }} />
+          <div style={{
+            textAlign: 'center',
+            fontSize: '14px',
+            color: '#000000',
+            marginTop: '-40px',
+            fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+            fontWeight: 'normal'
+          }}>
+            （数据来源：瑞幸财报）
+          </div>
         </div>
       </div>
 
@@ -497,7 +527,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
           margin: '0 auto',
           padding: '40px 0'
         }}>
-          <p style={{ fontSize: '21px', lineHeight: '42px', textAlign: 'justify', textIndent: '2em', color: '#4B3621' }}>
+          <p style={{ fontSize: '21px', lineHeight: '42px', textAlign: 'justify', textIndent: '2em', color: '#542410' }}>
             与本土连锁通过规模扩张实现增长不同，星巴克在中国市场近几年的整体经营表现呈现出明显的承压态势。从净收入和利润看，近五年星巴克中国区的收入与盈利均出现波动式下滑，在其全球体系中的收入和利润占比也由高位逐步回落。这表明，星巴克在中国的增长动能正在减弱，原有依赖品牌溢价和稳定客群的商业模式，可能难以应对消费环境变化带来的压力。
           </p>
         </div>
@@ -505,11 +535,37 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
 
       {/* Side-by-side Charts: Revenue & Profit */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'stretch', marginBottom: '100px', marginTop: '-30px', width: '100%', gap: '40px' }}>
-        <div style={{ flex: 1, height: '400px' }}>
+        <div style={{ flex: 1, height: '400px', position: 'relative' }}>
           <ReactECharts option={getStarbucksRevenueOption()} style={{ height: '100%', width: '100%' }} />
+          <div style={{
+            textAlign: 'center',
+            fontSize: '14px',
+            color: '#000000',
+            marginTop: '-20px',
+            fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+            fontWeight: 'normal',
+            position: 'absolute',
+            width: '100%',
+            bottom: '20px'
+          }}>
+            （数据来源：星巴克财报）
+          </div>
         </div>
-        <div style={{ flex: 1, height: '400px' }}>
+        <div style={{ flex: 1, height: '400px', position: 'relative' }}>
           <ReactECharts option={getStarbucksProfitOption()} style={{ height: '100%', width: '100%' }} />
+          <div style={{
+            textAlign: 'center',
+            fontSize: '14px',
+            color: '#000000',
+            marginTop: '-20px',
+            fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+            fontWeight: 'normal',
+            position: 'absolute',
+            width: '100%',
+            bottom: '20px'
+          }}>
+            （数据来源：星巴克财报）
+          </div>
         </div>
       </div>
 
@@ -551,14 +607,27 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
            minHeight: '400px'
          }}>
             <div style={{ flex: 1, paddingRight: '40px' }}>
-              <div className="content-body-text" style={{ color: '#4B3621', textAlign: 'justify' }}>
+              <div className="content-body-text" style={{ color: '#542410', textAlign: 'justify' }}>
                 <p style={{ fontSize: '21px', lineHeight: '42px' }}>
                   进一步结合门店数据可以发现，尽管星巴克仍在持续开店，但其门店扩张节奏相对温和，未形成通过快速铺店摊薄成本的规模效应。
                 </p>
               </div>
             </div>
-            <div style={{ flex: 1, height: '400px', width: '50%' }}>
+            <div style={{ flex: 1, height: '400px', width: '50%', position: 'relative' }}>
               <ReactECharts option={getStarbucksStoreOption()} style={{ height: '100%', width: '100%' }} />
+              <div style={{
+                textAlign: 'center',
+                fontSize: '14px',
+                color: '#000000',
+                marginTop: '-20px',
+                fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+                fontWeight: 'normal',
+                position: 'absolute',
+                width: '100%',
+                bottom: '20px'
+              }}>
+                （数据来源：星巴克财报）
+              </div>
             </div>
          </div>
       </div>
@@ -599,11 +668,24 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
           alignItems: 'center',
           minHeight: '400px'
         }}>
-          <div style={{ flex: 1, height: '400px', width: '50%' }}>
+          <div style={{ flex: 1, height: '400px', width: '50%', position: 'relative' }}>
             <ReactECharts option={getStarbucksCostOption()} style={{ height: '100%', width: '100%' }} />
+            <div style={{
+              textAlign: 'center',
+              fontSize: '14px',
+              color: '#000000',
+              marginTop: '-20px',
+              fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+              fontWeight: 'normal',
+              position: 'absolute',
+              width: '100%',
+              bottom: '20px'
+            }}>
+              （数据来源：星巴克财报）
+            </div>
           </div>
           <div style={{ flex: 1, paddingLeft: '40px' }}>
-            <div className="content-body-text" style={{ color: '#4B3621', textAlign: 'justify', fontFamily: '"SimSun", "Songti SC", serif' }}>
+            <div className="content-body-text" style={{ color: '#542410', textAlign: 'justify', fontFamily: '"SimSun", "Songti SC", serif' }}>
               <p style={{ fontSize: '21px', lineHeight: '42px' }}>
                 在成本端，2022—2025 年间，其门店运营费用和产品分销成本占比始终处于较高水平，且并未随门店增加而显著下降。由此可见，星巴克并未建立起以规模化降本为核心的价格竞争能力，在价格敏感度不断上升的市场环境中，其经营模式对长期价格战的适应性相对受限。
               </p>
@@ -643,7 +725,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
             left: 'calc(5% + 50px)',
             transform: 'translateY(calc(-50% + 50px))',
             width: 'calc(80% - 150px)',
-            color: '#4B3621',
+            color: '#542410',
             fontSize: '21px',
             lineHeight: '42px',
             textAlign: 'justify',
@@ -658,6 +740,19 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
         {/* Right: Luckin Chart */}
         <div style={{ width: 'calc(49.5% + 120px)', flexShrink: 0, marginLeft: '-100px', height: '500px', padding: '0 40px', boxSizing: 'border-box', position: 'relative', zIndex: 1, top: '20px' }}>
           <ResponsiveLuckinCityChart />
+          <div style={{
+            textAlign: 'center',
+            fontSize: '14px',
+            color: '#000000',
+            fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+            fontWeight: 'normal',
+            position: 'absolute',
+            width: '100%',
+            bottom: '20px',
+            left: 0
+          }}>
+            （数据来源：窄门餐眼）
+          </div>
         </div>
       </div>
 
@@ -691,7 +786,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
             left: 'calc(5% + 50px)',
             transform: 'translateY(calc(-50% + 50px))',
             width: 'calc(80% - 150px)',
-            color: '#4B3621',
+            color: '#542410',
             fontSize: '21px',
             lineHeight: '42px',
             textAlign: 'justify',
@@ -706,6 +801,19 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
         {/* Right: Starbucks Chart */}
         <div style={{ width: 'calc(49.5% + 120px)', flexShrink: 0, marginLeft: '-100px', height: '500px', padding: '0 40px', boxSizing: 'border-box', position: 'relative', zIndex: 1, top: '20px' }}>
           <ResponsiveStarbucksCityChart />
+          <div style={{
+            textAlign: 'center',
+            fontSize: '14px',
+            color: '#000000',
+            fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+            fontWeight: 'normal',
+            position: 'absolute',
+            width: '100%',
+            bottom: '20px',
+            left: 0
+          }}>
+            （数据来源：窄门餐眼）
+          </div>
         </div>
       </div>
 
@@ -777,7 +885,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
           top: '10%',
           left: '25%',
           width: 'calc(75% - 100px)',
-          color: '#4B3621',
+          color: '#542410',
           fontSize: '24px',
           lineHeight: '48px',
           letterSpacing: '2px',
@@ -794,7 +902,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
           position: 'absolute',
           bottom: '10px',
           right: '80px',
-          color: '#4B3621',
+          color: '#542410',
           fontSize: '21px',
           fontFamily: '"Songti SC", "SimSun", serif',
           opacity: 0.8
@@ -831,7 +939,23 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
               />
             </div>
           ),
-          chart: <ReactECharts option={getFrequencyOption()} style={{ height: '100%', width: '100%' }} />
+          chart: (
+            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+              <ReactECharts option={getFrequencyOption()} style={{ height: '100%', width: '100%' }} />
+              <div style={{
+                textAlign: 'center',
+                fontSize: '14px',
+                color: '#000000',
+                fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+                fontWeight: 'normal',
+                position: 'absolute',
+                width: '100%',
+                bottom: '0px'
+              }}>
+                （数据来源：艾媒咨询）
+              </div>
+            </div>
+          )
         },
         {
           text: (
@@ -856,7 +980,23 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
               />
             </div>
           ),
-          chart: <ReactECharts option={getPriceAcceptanceOption()} style={{ height: '100%', width: '100%' }} />
+          chart: (
+            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+              <ReactECharts option={getPriceAcceptanceOption()} style={{ height: '100%', width: '100%' }} />
+              <div style={{
+                textAlign: 'center',
+                fontSize: '14px',
+                color: '#000000',
+                fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+                fontWeight: 'normal',
+                position: 'absolute',
+                width: '100%',
+                bottom: '-30px'
+              }}>
+                （数据来源：艾媒咨询）
+              </div>
+            </div>
+          )
         },
         {
           text: (
@@ -881,7 +1021,23 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
               />
             </div>
           ),
-          chart: <ReactECharts option={getMonthConsumptionOption()} style={{ height: '100%', width: '100%' }} />
+          chart: (
+            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+              <ReactECharts option={getMonthConsumptionOption()} style={{ height: '100%', width: '100%' }} />
+              <div style={{
+                textAlign: 'center',
+                fontSize: '14px',
+                color: '#000000',
+                fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+                fontWeight: 'normal',
+                position: 'absolute',
+                width: '100%',
+                bottom: '-30px'
+              }}>
+                （数据来源：艾媒咨询）
+              </div>
+            </div>
+          )
         }
       ]} />
 
@@ -932,15 +1088,47 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
             </p>
           </FullWidthText>
 
-          {/* Charts Side-by-Side */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginBottom: '60px' }}>
+          {/* Charts Side-by-Side Extended with Overlap */}
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            width: '100vw', 
+            marginLeft: 'calc(50% - 50vw)', 
+            marginBottom: '40px'
+          }}>
             {/* Luckin Chart */}
-            <div style={{ width: '48%', height: '500px' }}>
+            <div style={{ width: 'calc(50% + 140px)', height: '500px', position: 'relative', flexShrink: 0 }}>
               <ReactECharts option={getLuckinWordCloudOption()} style={{ height: '100%', width: '100%' }} />
+              <div style={{
+                textAlign: 'center',
+                fontSize: '14px',
+                color: '#000000',
+                fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+                fontWeight: 'normal',
+                position: 'absolute',
+                width: '100%',
+                bottom: '45px',
+                zIndex: 10
+              }}>
+                （数据来源：小红书数据爬取（关键词 瑞幸+消费/买/价格 得到的笔记的正文文本）
+              </div>
             </div>
             {/* Starbucks Chart */}
-            <div style={{ width: '48%', height: '500px' }}>
+            <div style={{ width: 'calc(50% + 140px)', height: '500px', marginLeft: '-250px', position: 'relative', flexShrink: 0 }}>
               <ReactECharts option={getStarbucksWordCloudOption()} style={{ height: '100%', width: '100%' }} />
+              <div style={{
+                textAlign: 'center',
+                fontSize: '14px',
+                color: '#000000',
+                fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+                fontWeight: 'normal',
+                position: 'absolute',
+                width: '100%',
+                bottom: '45px',
+                zIndex: 10
+              }}>
+                （数据来源：小红书数据爬取（关键词 星巴克+消费/买/价格 得到的笔记的正文文本）
+              </div>
             </div>
           </div>
 

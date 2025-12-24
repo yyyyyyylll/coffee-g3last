@@ -57,7 +57,9 @@ const ProvinceBarChartSection = () => {
       top: 20,
       textStyle: {
         color: '#F0ECE5',
-        fontSize: 16
+        fontSize: 21,
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+        fontWeight: 'normal'
       }
     },
     tooltip: {
@@ -121,8 +123,13 @@ const ProvinceBarChartSection = () => {
   };
 
   return (
-    <div style={{ width: '100%', height: '900px' }}>
-      <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ width: '100%', height: '900px' }}>
+        <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+      </div>
+      <div style={{ fontSize: '14px', color: '#F0ECE5', marginTop: '-250px', transform: 'translateX(-50px)', fontFamily: "'SimHei', 'Heiti SC', sans-serif", fontWeight: 'normal' }}>
+        （数据来源：窄门餐眼）
+      </div>
     </div>
   );
 };

@@ -8,7 +8,13 @@ const StoreCountChartSection = () => {
       text: '2020-2025中国咖啡门店数量情况',
       left: 'center',
       top: 10,
-      textStyle: { color: '#F0ECE5', fontSize: 16, fontWeight: 'bold' }
+      textStyle: {
+        fontSize: 21,
+        color: '#F0ECE5',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif", // 黑体
+        fontWeight: 'normal',
+        lineHeight: 24
+      }
     },
     tooltip: {
       trigger: 'axis',
@@ -77,7 +83,7 @@ const StoreCountChartSection = () => {
         name: '中国咖啡门店数量',
         type: 'bar',
         barMaxWidth: 40,
-        itemStyle: { color: '#A8D5A2' },
+        itemStyle: { color: '#F0E68C' }, // Light Yellow
         tooltip: {
           valueFormatter: function (value) {
             return value + ' 家';
@@ -92,8 +98,8 @@ const StoreCountChartSection = () => {
         showSymbol: true,
         symbol: 'circle',
         symbolSize: 8,
-        lineStyle: { color: '#5B3A29', width: 3 },
-        itemStyle: { color: '#5B3A29' },
+        lineStyle: { color: '#FFA500', width: 3 },
+        itemStyle: { color: '#FFA500' },
         emphasis: { focus: 'series' },
         tooltip: {
           valueFormatter: function (value) {
@@ -106,8 +112,13 @@ const StoreCountChartSection = () => {
   };
 
   return (
-    <div style={{ width: '100%', height: '550px' }}>
-      <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ width: '100%', height: '550px' }}>
+        <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+      </div>
+      <div style={{ fontSize: '14px', color: '#F0ECE5', marginTop: '-50px', fontFamily: "'SimHei', 'Heiti SC', sans-serif", fontWeight: 'normal' }}>
+        （数据来源：窄门餐眼、餐宝典）
+      </div>
     </div>
   );
 };

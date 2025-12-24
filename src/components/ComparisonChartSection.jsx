@@ -37,7 +37,14 @@ const ComparisonChartSection = () => {
     title: {
       text: '中国咖啡行业市场规模及现制咖啡市场规模对比（2020—2025E）',
       left: 'center',
-      textStyle: { fontSize: 16, color: '#F0ECE5' }
+      textStyle: {
+        fontSize: 21,
+        color: '#F0ECE5',
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif", // 黑体
+        fontWeight: 'normal',
+        lineHeight: 24
+      },
+      top: 0
     },
     color: [
       '#5470C6', // 柱状图 1
@@ -111,23 +118,25 @@ const ComparisonChartSection = () => {
     series: [
       {
         name: '中国咖啡行业市场规模（亿元）', type: 'bar',
+        itemStyle: { color: '#F0E68C' }, // Khaki (lighter, less vivid yellow)
         tooltip: { valueFormatter: function (value) { return value + ' 亿元'; } },
         data: formattedData['中国咖啡行业市场规模（亿元）']
       },
       {
         name: '中国现制咖啡市场规模（亿元）', type: 'bar',
+        itemStyle: { color: '#FFB6C1' }, // Light Pink
         tooltip: { valueFormatter: function (value) { return value + ' 亿元'; } },
         data: formattedData['中国现制咖啡市场规模（亿元）']
       },
       {
         name: '中国咖啡行业市场规模增长率（%）', type: 'line', yAxisIndex: 1, 
-        color: '#EE6666', 
+        color: '#FFD700', 
         tooltip: { valueFormatter: function (value) { return value + ' %'; } },
         data: formattedData['中国咖啡行业市场规模增长率（%）']
       },
       {
         name: '中国现制咖啡市场规模增长率（%）', type: 'line', yAxisIndex: 1, 
-        color: '#FAC858', 
+        color: '#FF4500', 
         tooltip: { valueFormatter: function (value) { return value + ' %'; } },
         data: formattedData['中国现制咖啡市场规模增长率（%）']
       }
@@ -135,8 +144,13 @@ const ComparisonChartSection = () => {
   };
 
   return (
-    <div style={{ width: '100%', height: '550px' }}>
-      <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ width: '100%', height: '550px' }}>
+        <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+      </div>
+      <div style={{ fontSize: '14px', color: '#F0ECE5', marginTop: '10px', fontFamily: "'SimHei', 'Heiti SC', sans-serif", fontWeight: 'normal' }}>
+        （数据来源：艾媒咨询、餐宝典）
+      </div>
     </div>
   );
 };

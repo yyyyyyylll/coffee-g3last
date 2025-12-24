@@ -79,10 +79,11 @@ const PriceWarTimeline = () => {
   }, []);
 
   return (
-    <div 
-      ref={containerRef}
-      className="price-war-container"
-    >
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div 
+        ref={containerRef}
+        className="price-war-container"
+      >
       {/* --- BACKGROUND LINE --- */}
       <div className="timeline-bg-line" />
       
@@ -132,7 +133,7 @@ const PriceWarTimeline = () => {
                 <PriceBadge price={event.priceTag} active={isActive} position={isTop ? 'top' : 'bottom'} />
 
                 {/* Brand Name - Outline to Fill Animation */}
-                <div style={{ position: 'relative', marginBottom: '0' }}>
+                <div style={{ position: 'relative', marginBottom: '-12px' }}>
                     {event.brands.map((brand, i) => (
                         <h2 key={i} className="brand-name">
                             {/* Filled Version Overlay */}
@@ -148,7 +149,7 @@ const PriceWarTimeline = () => {
                 </div>
 
                 {/* Title & Description */}
-                <div style={{ maxWidth: '20rem', margin: '0 auto' }}>
+                <div style={{ maxWidth: 'calc(20rem + 60px)', margin: '0 auto' }}>
                     <h3 className={`card-title ${isActive ? 'active' : 'inactive'}`}>
                         {event.title}
                     </h3>
@@ -170,6 +171,17 @@ const PriceWarTimeline = () => {
        {/* --- PADDING END --- */}
        <div className="timeline-padding" />
     </div>
+    <div style={{
+      textAlign: 'center',
+      fontSize: '16px',
+      color: '#000000',
+      marginTop: '20px',
+      fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+      fontWeight: 'normal'
+    }}>
+      （数据来源：红餐大数据）
+    </div>
+  </div>
   );
 };
 

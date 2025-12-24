@@ -39,20 +39,21 @@ const ChartSection = () => {
       text: '中国社会消费品零售总额、咖啡与新式茶饮\n市场规模及增速对比（2020—2025E）',
       left: 'center',
       textStyle: {
-        fontSize: 16,
+        fontSize: 21,
         color: '#F0ECE5', // 使用浅色以在深色背景上显示
-        fontFamily: 'sans-serif', // 清晰易读的字体
+        fontFamily: "'SimHei', 'Heiti SC', sans-serif", // 黑体
+        fontWeight: 'normal',
         lineHeight: 24
       },
       top: 0
     },
     // 设置新的颜色方案
     color: [
-      '#5470C6', // 默认颜色 1 (用于茶饮市场规模柱)
-      '#91CC75', // 默认颜色 2 (用于咖啡市场规模柱)
+      '#FF69B4', // 亮粉色 (用于茶饮市场规模柱)
+      '#FFB6C1', // 浅粉色 (用于咖啡市场规模柱)
       '#FF8C00', // 橙色 (用于社会消费品增长率线)
-      '#191970', // 深蓝色 (用于咖啡增长率线)
-      '#87CEFA'  // 浅蓝色 (用于茶饮增长率线)
+      '#DA70D6', // 淡紫色 (用于咖啡增长率线)
+      '#ADD8E6'  // 浅蓝色 (用于茶饮增长率线)
     ],
     tooltip: {
       trigger: 'axis',
@@ -141,6 +142,7 @@ const ChartSection = () => {
       {
         name: '中国新式茶饮市场规模（亿元）',
         type: 'bar',
+        itemStyle: { color: '#FFD700' }, // Gold
         tooltip: { valueFormatter: function (value) { return value + ' 亿元'; } },
         data: formattedData['中国新式茶饮市场规模（亿元）']
       },
@@ -148,33 +150,34 @@ const ChartSection = () => {
       {
         name: '中国咖啡行业市场规模（亿元）',
         type: 'bar',
+        itemStyle: { color: '#FFB6C1' }, // LightPink
         tooltip: { valueFormatter: function (value) { return value + ' 亿元'; } },
         data: formattedData['中国咖啡行业市场规模（亿元）']
       },
-      // 折线图 1: 社会消费品零售总额增长率 (yAxis[1], 橙色)
+      // 折线图 1: 社会消费品零售总额增长率 (yAxis[1], 蓝色)
       {
         name: '中国社会消费品零售总额增长率（%）',
         type: 'line',
         yAxisIndex: 1,
-        color: '#FF8C00', // 橙色
+        color: '#00BFFF', // 蓝色
         tooltip: { valueFormatter: function (value) { return value + ' %'; } },
         data: formattedData['中国社会消费品零售总额增长率（%）']
       },
-      // 折线图 2: 中国咖啡行业市场规模增长率 (yAxis[1], 深蓝色)
+      // 折线图 2: 中国咖啡行业市场规模增长率 (yAxis[1], 浅粉色)
       {
         name: '中国咖啡行业市场规模增长率（%）',
         type: 'line',
         yAxisIndex: 1,
-        color: '#DA70D6', // 淡紫色 - 原深蓝色在深底色下不可见
+        color: '#FFB6C1', // 浅粉色
         tooltip: { valueFormatter: function (value) { return value + ' %'; } },
         data: formattedData['中国咖啡行业市场规模增长率（%）']
       },
-      // 折线图 3: 中国新式茶饮市场规模增长率 (yAxis[1], 浅蓝色)
+      // 折线图 3: 中国新式茶饮市场规模增长率 (yAxis[1], 黄色)
       {
         name: '中国新式茶饮市场规模增长率（%）',
         type: 'line',
         yAxisIndex: 1,
-        color: '#ADD8E6', // 浅蓝色
+        color: '#FFFF00', // 黄色
         tooltip: { valueFormatter: function (value) { return value + ' %'; } },
         data: formattedData['中国新式茶饮市场规模增长率（%）']
       }
@@ -182,8 +185,13 @@ const ChartSection = () => {
   };
 
   return (
-    <div style={{ width: '100%', height: '500px' }}>
-      <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ width: '100%', height: '500px' }}>
+        <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+      </div>
+      <div style={{ fontSize: '14px', color: '#F0ECE5', marginTop: '10px', fontFamily: "'SimHei', 'Heiti SC', sans-serif", fontWeight: 'normal' }}>
+        （数据来源：国家统计局、艾媒咨询）
+      </div>
     </div>
   );
 };

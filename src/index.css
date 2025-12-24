@@ -47,9 +47,10 @@ body {
 .image-wrapper {
   position: relative;
   /* Reduced size to fit in viewport */
-  width: 340px;
-  max-width: 55%;
+  width: 408px; /* 1.2x of 340px */
+  max-width: 66%; /* 1.2x of 55% */
   margin: 0 auto;
+  transform: translateY(-70px); /* Move up 70px */
 }
 
 /* Reduced size to be flush with image */
@@ -86,8 +87,18 @@ body {
 
 .title-container {
   position: relative;
-  margin-top: 1rem;
-  /* Reduced margin */
+  margin-top: -125px; /* Adjusted to -125px (25px - 150px) per user request */
+  z-index: 5; /* Ensure it is visible above other elements if needed */
+}
+
+.hero-subtitle-img {
+  display: block;
+  margin: 1rem auto 0; /* Add top margin to separate from title */
+  width: auto;
+  height: 60px; /* Adjust height as needed */
+  max-width: 80%;
+  opacity: 0;
+  animation: fadeIn 1s 2s forwards; /* Delay to appear after title */
 }
 
 .liquid-title {
@@ -102,21 +113,23 @@ body {
   -webkit-text-stroke: 0;
   color: transparent;
   position: relative;
+  display: inline-block; /* Ensure background-size is relative to text width */
   /* For pseudo-element absolute positioning */
 
   /* Single Color Liquid Wave Animation 
      Color updated to #512615 */
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%23512615' fill-opacity='1' d='M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,149.3C672,139,768,149,864,170.7C960,192,1056,224,1152,224C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%23512615' fill-opacity='1' d='M0,160 Q360,200 720,160 T1440,160 L1440,320 L0,320 Z'%3E%3C/path%3E%3C/svg%3E");
 
   background-repeat: repeat-x;
 
   /* 
      Seamless Loop Large Wave Logic:
-     - Scale: 200% width
+     - Scale: 50% width (Narrower wave)
+     - Height: 150% for better aspect ratio
      - Offset Calculation for seamless loop: 0 -> 200%
   */
-  background-size: 200% 150%;
+  background-size: 50% 150%;
 
   background-position: 0% 100%;
 
@@ -124,7 +137,7 @@ body {
   background-clip: text;
 
   /* Dual Animation: Very Slow */
-  animation: waveScroll 16s linear infinite, waveTide 20s ease-in-out infinite alternate;
+  animation: waveTide 5s ease-in-out infinite alternate;
 }
 
 /* Pseudo-element for the "Ghost" blurred text (Unsubmerged part) */
@@ -149,25 +162,17 @@ body {
   -webkit-text-stroke: 0;
 }
 
-@keyframes waveScroll {
-  from {
-    background-position-x: 0%;
-  }
-
-  to {
-    background-position-x: 200%;
-  }
-}
+/* waveScroll animation removed as requested for vertical-only fluctuation */
 
 @keyframes waveTide {
   from {
-    background-position-y: 110%;
-    /* Low tide */
+    background-position-y: 50%;
+    /* Low tide: ~2/5 from bottom */
   }
 
   to {
-    background-position-y: 80%;
-    /* High tide */
+    background-position-y: 110%;
+    /* High tide: ~9/10 from bottom */
   }
 }
 
@@ -629,4 +634,129 @@ html, body {
   justify-content: center;
   color: #666;
   font-weight: bold;
+}
+
+/* Hero Main Visual with Side Decorations */
+.hero-main-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%; /* Full screen width */
+  margin: 80px auto 0; /* Move down 80px */
+  gap: 0; 
+  position: relative;
+  z-index: 2;
+  height: 500px; /* Give it explicit height to contain absolute elements properly */
+}
+
+.image-wrapper {
+  position: relative;
+  z-index: 1; /* Lower z-index for coffee cup */
+  /* Reduced size to fit in viewport */
+  width: 449px; /* 1.1x of 408px */
+  max-width: 73%; /* 1.1x of 66% */
+  margin: 0 auto;
+  transform: translateY(-130px); /* Move up additional 60px (total 130px) */
+}
+
+.side-decoration {
+  position: absolute; /* Changed to absolute for precise overlap control */
+  top: 50%;
+  z-index: 10; /* Ensure it sits on top of image-wrapper */
+  height: auto;
+  max-height: 380px; /* 2.1x of 180px */
+  width: auto;
+  max-width: 650px; /* Increased to allow size growth */
+  object-fit: contain;
+  opacity: 0.9;
+  filter: contrast(1.1);
+}
+
+.side-decoration.left {
+  right: 50%; /* Anchor to center */
+  margin-right: 80px; /* Offset set to 80px as requested */
+  transform: translateY(-50%) translateY(-30px) rotate(-5deg); /* Center vertically then offset - moved up 50px */
+}
+
+.side-decoration.right {
+  left: 50%; /* Anchor to center */
+  margin-left: 80px; /* Offset set to 80px as requested */
+  transform: translateY(-50%) translateY(-30px) rotate(-3deg);
+}
+
+@media (max-width: 768px) {
+  .hero-main-visual {
+    gap: 0;
+    transform: scale(0.9);
+  }
+  
+  .side-decoration {
+    max-height: 100px;
+    max-width: 120px;
+  }
+  
+  .side-decoration.left {
+    /* Auto margin handled by main rule */
+  }
+  
+  .side-decoration.right {
+    /* Auto margin handled by main rule */
+  }
+}
+
+/* Top Left Decoration */
+.top-left-decoration {
+  position: absolute;
+  top: 0;
+  left: 70px;
+  width: 1235px; /* Scaled 1.2x (was 1029px) */
+  max-width: none; 
+  height: auto;
+  z-index: 10; /* Ensure it sits on top of other elements */
+  pointer-events: none; /* Let clicks pass through if needed */
+  mix-blend-mode: multiply; /* Optional: helps it blend with paper background */
+  opacity: 0.9;
+}
+
+.hero-subtitle-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scale(2.1);
+  bottom: -140px; /* Moved down 150px from -40px */
+  width: auto;
+  /* Ensure it wraps content tightly so decoration can position relative to it */
+  display: inline-block;
+  z-index: 5;
+}
+
+.hero-middle-subtitle-content {
+  display: block;
+  width: auto;
+  max-width: 600px;
+  height: auto;
+}
+
+.subtitle-decoration-326 {
+  position: absolute;
+  top: 54px;
+  right: -45px;
+  width: 140px; /* Adjust size relative to the 2.1x scaled container */
+  height: auto;
+  z-index: 6;
+}
+
+@media (max-width: 768px) {
+  .hero-subtitle-wrapper {
+    max-width: 80%;
+    bottom: -30px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .top-left-decoration {
+    width: 600px; /* Smaller but still large on mobile */
+    left: 50px;
+  }
 }

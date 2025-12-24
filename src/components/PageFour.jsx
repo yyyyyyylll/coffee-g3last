@@ -30,7 +30,7 @@ const PageFour = () => {
             justifyContent: 'center', 
             alignItems: 'center' 
           }}>
-            <div style={{ width: '80%', color: '#542410', fontFamily: '"SimSun", "Songti SC", serif', fontSize: '21px', lineHeight: '42px', textAlign: 'justify' }}>
+            <div style={{ width: '80%', color: '#f0e7da', fontFamily: '"SimSun", "Songti SC", serif', fontSize: '21px', lineHeight: '42px', textAlign: 'justify' }}>
               <p style={{ marginBottom: '20px', fontSize: '24px', lineHeight: '48px', marginLeft: '-20px', marginTop: '280px' }}>
                 中国咖啡市场在宏观消费波动中表现出的增长韧性，是供需双方在价格理性与情绪感性之间达成新平衡的结果。
               </p>
@@ -43,14 +43,14 @@ const PageFour = () => {
         
         <img src={img4} alt="Part 4 Illustration" style={{ width: '80%', height: 'auto', marginTop: '-85px', marginBottom: '30px', position: 'relative', zIndex: 2 }} />
         
-        <div style={{ width: 'calc(80% - 80px)', color: '#542410', fontFamily: '"SimSun", "Songti SC", serif', fontSize: '21px', lineHeight: '42px', textAlign: 'justify', marginBottom: '50px', marginTop: '-450px', position: 'relative', zIndex: 3 }}>
+        <div style={{ width: 'calc(80% - 80px)', color: '#f0e7da', fontFamily: '"SimSun", "Songti SC", serif', fontSize: '21px', lineHeight: '42px', textAlign: 'justify', marginBottom: '50px', marginTop: '-450px', position: 'relative', zIndex: 3 }}>
           <p style={{ textIndent: '2em' }}>
             不过，主打低价的发展模式未必适用于所有品牌。对于长期依赖品牌溢价和空间体验的企业而言，市场节奏的变化带来了明显压力。以星巴克为例，其在中国市场的经营表现近年出现波动。在价格竞争加剧、本土品牌加速扩张的环境下，原有模式的适应性受到挑战，相关业务调整也反映出其对市场变化的回应。
           </p>
         </div>
         
         <div style={{ width: '80%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '50px', position: 'relative', zIndex: 3, marginTop: '-340px' }}>
-          <div style={{ width: '50%', color: '#542410', fontFamily: '"SimSun", "Songti SC", serif', fontSize: '21px', lineHeight: '42px', textAlign: 'justify', paddingRight: '20px', paddingLeft: '40px', boxSizing: 'border-box' }}>
+          <div style={{ width: '50%', color: '#f0e7da', fontFamily: '"SimSun", "Songti SC", serif', fontSize: '21px', lineHeight: '42px', textAlign: 'justify', paddingRight: '20px', paddingLeft: '40px', boxSizing: 'border-box' }}>
             <p style={{ textIndent: '2em' }}>
               从需求端看，消费者决策逻辑发生了明显转变。性价比已超越品牌光环成为主要决策依据，但在物质支出精简的同时，消费行为被赋予了更多的情感诉求。高频次的IP联名与社交媒体传播，契合都市人群对即时慰藉与文化认同的渴望。咖啡不再仅仅是功能性提神饮料，更通过低门槛的参与感，成为年轻群体进行情感调节与社交表达的仪式化载体。
             </p>

@@ -117,7 +117,7 @@ const PageThree = () => {
           <img 
             src={titleImg} 
             style={{ 
-              width: '145%', 
+              width: '113%', 
               maxWidth: 'none',
               height: 'auto',
               marginLeft: '0%'
@@ -196,16 +196,42 @@ const PageThree = () => {
 
         <div style={{
             display: 'flex',
-            justifyContent: 'space-between',
-            width: '100%',
-            height: '400px',
+            justifyContent: 'center',
+            width: '100vw',
+            marginLeft: 'calc(50% - 50vw + 150px)',
             marginBottom: '40px'
         }}>
-            <div style={{ width: '48%', height: '100%' }}>
+            <div style={{ width: 'calc(50% + 140px)', height: '500px', position: 'relative', flexShrink: 0 }}>
                <ReactECharts option={getLuckinOfficialWordCloudOption()} style={{ width: '100%', height: '100%' }} />
+               <div style={{
+                textAlign: 'center',
+                fontSize: '14px',
+                color: '#000000',
+                fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+                fontWeight: 'normal',
+                position: 'absolute',
+                width: '100%',
+                bottom: '45px',
+                zIndex: 10
+              }}>
+                （数据来源：小红书数据爬取（瑞幸小红书官号全部笔记的正文文本）
+              </div>
             </div>
-            <div style={{ width: '48%', height: '100%' }}>
+            <div style={{ width: 'calc(50% + 140px)', height: '500px', marginLeft: '-250px', position: 'relative', flexShrink: 0 }}>
                <ReactECharts option={getStarbucksOfficialWordCloudOption()} style={{ width: '100%', height: '100%' }} />
+               <div style={{
+                textAlign: 'center',
+                fontSize: '14px',
+                color: '#000000',
+                fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+                fontWeight: 'normal',
+                position: 'absolute',
+                width: '100%',
+                bottom: '45px',
+                zIndex: 10
+              }}>
+                （数据来源：小红书数据爬取（星巴克小红书官号全部笔记的正文文本）
+              </div>
             </div>
         </div>
 
@@ -256,8 +282,21 @@ const PageThree = () => {
           <div style={{ ...textColStyle, width: '40%', paddingLeft: '45px', boxSizing: 'border-box' }}>
             消费场景的数据印证了这一趋势。2025年，近半数（47.89%）消费者选择在学习或工作时饮用咖啡，另有45.2%的人在休闲放松时将咖啡作为精神补给。相比之下，传统印象中与商务、会议相关的场景并不突出。这说明咖啡的消费动机日益个人化、情绪化。
           </div>
-          <div style={{ ...chartColStyle, height: '530px', width: '60%', boxSizing: 'border-box' }}>
+          <div style={{ ...chartColStyle, height: '530px', width: '60%', boxSizing: 'border-box', position: 'relative' }}>
             <ReactECharts option={getConsumptionScenesOption()} style={{ width: '100%', height: '100%' }} />
+            <div style={{
+                textAlign: 'center',
+                fontSize: '14px',
+                color: '#000000',
+                fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+                fontWeight: 'normal',
+                position: 'absolute',
+                width: '100%',
+                bottom: '10px',
+                zIndex: 10
+              }}>
+                （数据来源：艾媒咨询）
+              </div>
           </div>
         </div>
 
@@ -285,16 +324,53 @@ const PageThree = () => {
 
         <div style={{
             display: 'flex',
-            justifyContent: 'space-between',
-            width: '100%',
-            height: '400px',
+            justifyContent: 'center',
+            width: '100vw',
+            marginLeft: 'calc(50% - 50vw + 150px)',
             marginBottom: '40px'
         }}>
-            <div style={{ width: '48%', height: '100%' }}>
+            <div style={{
+                width: 'calc(50% + 140px)',
+                height: '500px',
+                position: 'relative',
+                flexShrink: 0
+            }}>
                <ReactECharts option={getLuckinUserEmotionWordCloudOption()} style={{ width: '100%', height: '100%' }} />
+               <div style={{
+                    textAlign: 'center',
+                    fontSize: '14px',
+                    color: '#000000',
+                    fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+                    fontWeight: 'normal',
+                    position: 'absolute',
+                    width: '100%',
+                    bottom: '15px',
+                    zIndex: 10
+                }}>
+                    （数据来源：小红书数据爬取（关键词 瑞幸+情绪/打卡/活动 得到的笔记的正文文本）
+                </div>
             </div>
-            <div style={{ width: '48%', height: '100%' }}>
+            <div style={{
+                width: 'calc(50% + 140px)',
+                height: '500px',
+                position: 'relative',
+                flexShrink: 0,
+                marginLeft: '-250px'
+            }}>
                <ReactECharts option={getStarbucksUserEmotionWordCloudOption()} style={{ width: '100%', height: '100%' }} />
+               <div style={{
+                    textAlign: 'center',
+                    fontSize: '14px',
+                    color: '#000000',
+                    fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+                    fontWeight: 'normal',
+                    position: 'absolute',
+                    width: '100%',
+                    bottom: '15px',
+                    zIndex: 10
+                }}>
+                    （数据来源：小红书数据爬取（关键词 星巴克+情绪/打卡/活动 得到的笔记的正文文本）
+                </div>
             </div>
         </div>
 

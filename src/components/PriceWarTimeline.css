@@ -157,7 +157,7 @@
 
 /* Separate Date Positions for Top/Bottom */
 .node-date.top {
-  top: 0.8rem; /* Tighter */
+  top: calc(0.8rem + 30px); /* Increased margin by 30px */
 }
 
 .node-date.bottom {
@@ -221,15 +221,25 @@
 
 /* Separate Badge Positions for Top/Bottom */
 .price-badge-wrapper.top {
-  bottom: -3rem; /* Tighter spacing */
+  bottom: calc(-3rem + 20px); /* Increased distance from card bottom towards axis, moving further from card means closer to axis? No wait. 
+   bottom: -3rem means 3rem below card.
+   bottom: -3rem - 20px means 3rem + 20px below card (closer to axis).
+   User said: "increase distance to axis by 20px".
+   Current: -3rem - 20px (closer).
+   New: -3rem (further).
+   Actually, maybe they want -3rem + 20px relative to ORIGINAL?
+   Let's stick to reverting the -20px first.
+   Wait, if I do -3rem, it is 20px further than current.
+   Let's just use -3rem. */
+  bottom: -3rem; 
 }
 
 .price-badge-wrapper.bottom {
-  top: -3rem; /* Tighter spacing */
+  top: -3rem;
 }
 
 .price-badge-wrapper.active {
-  transform: translateX(-50%) scale(1) translateY(0);
+  transform: translateX(-50%) scale(1.3) translateY(0);
   opacity: 1;
 }
 
@@ -318,7 +328,7 @@
 /* Title & Description */
 .card-title {
   font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
+  font-size: calc(1.2rem + 4px);
   font-weight: bold;
   color: #b45309; /* amber-700 - Keep as highlight */
   margin-bottom: 0.2rem; /* Compact */
