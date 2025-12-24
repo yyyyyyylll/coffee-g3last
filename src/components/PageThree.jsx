@@ -19,15 +19,15 @@ import {
 const PageThree = () => {
   const commonTextStyle = {
     color: '#542410',
-    fontFamily: '"SimSun", "Songti SC", serif',
-    fontSize: '21px',
+    fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif',
+    fontSize: '26px',
     lineHeight: '42px',
     textAlign: 'justify'
   };
 
   const sectionTitleStyle = {
     color: '#000000',
-    fontSize: '24px',
+    fontSize: '30px',
     fontWeight: 'bold',
     marginBottom: '20px',
     width: '100%'
@@ -65,17 +65,23 @@ const PageThree = () => {
 
   return (
     <div style={{ width: '100%' }}>
-      <div style={{ position: 'sticky', bottom: 0, zIndex: 1 }}>
-        <div className="page-three-container" style={{  
-      width: '100%', 
-      minHeight: '100vh', 
-      backgroundColor: '#f0d4b5', // Light beige background
-      padding: '0',
-      boxSizing: 'border-box',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    }}>
+      <div className="page-three-container" style={{  
+        width: '100%', 
+        minHeight: '100vh', 
+        backgroundColor: '#f0d4b5',
+        position: 'sticky',
+        bottom: 0, 
+        zIndex: 1,
+        overflow: 'visible'
+      }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          width: '100%',
+          padding: '0',
+          boxSizing: 'border-box'
+        }}>
       {/* Cover Image */}
       <div style={{ 
         width: '100%', 
@@ -133,13 +139,13 @@ const PageThree = () => {
             transform: 'translateX(-50%)',
             width: '110%', // Match image width scale roughly or keep it constrained
             maxWidth: '1200px', // Optional constraint
-            padding: '0 40px',
+            padding: '0 140px 0 40px',
             boxSizing: 'border-box',
             textAlign: 'justify',
             color: '#542410', // Dark brown color
-            fontSize: '21px',
+            fontSize: '26px',
             lineHeight: '42px',
-            fontFamily: '"SimSun", "Songti SC", serif'
+            fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif'
           }}>
             <p style={{ margin: 0, marginLeft: '20px' }}>
               在“消费降级”的大背景下，咖啡逐渐被赋予新的角色，转变为一种承载情绪、连接文化、激活社交的载体。
@@ -154,9 +160,9 @@ const PageThree = () => {
             width: 'calc(65% - 115px)', // Adjusted: Right moved right 20px -> Width increases by 25px (net -115px)
             textAlign: 'justify',
             color: '#542410', // Dark brown color
-            fontSize: '21px',
+            fontSize: '26px',
             lineHeight: '42px',
-            fontFamily: '"SimSun", "Songti SC", serif'
+            fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif'
           }}>
              <p style={{ margin: 0 }}>
               随着现制咖啡价格持续下探，品牌在营销中不再只强调风味或配方，而是通过IP联名、限定活动等方式，为产品叠加文化与情感意涵，塑造更强的品牌吸引力与用户黏性。
@@ -167,7 +173,7 @@ const PageThree = () => {
         <div style={{
             ...fullWidthTextStyle, 
             marginBottom: '20px',
-            fontSize: '21px',
+            fontSize: '26px',
             lineHeight: '42px',
             padding: '0 45px',
             boxSizing: 'border-box',
@@ -185,7 +191,7 @@ const PageThree = () => {
         <div style={{
             ...fullWidthTextStyle, 
             marginBottom: '40px',
-            fontSize: '21px',
+            fontSize: '26px',
             lineHeight: '42px',
             color: '#542410',
             padding: '0 45px',
@@ -237,7 +243,7 @@ const PageThree = () => {
 
         <p style={{
           ...fullWidthTextStyle,
-          fontSize: '21px',
+          fontSize: '26px',
           lineHeight: '42px',
           color: '#542410',
           padding: '0 45px',
@@ -267,9 +273,9 @@ const PageThree = () => {
                 left: '10%', // Adjust based on visual needs
                 width: '60%',
                 color: '#f0e7da', // Updated color
-                fontSize: '24px', // Updated font size
+                fontSize: '30px', // Updated font size
                 lineHeight: '48px', // Updated line height
-                fontFamily: '"SimSun", "Songti SC", serif',
+                fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif',
                 textAlign: 'justify',
                 paddingRight: '50px', // Added right padding
                 boxSizing: 'border-box'
@@ -313,7 +319,7 @@ const PageThree = () => {
             ...fullWidthTextStyle,
             marginTop: '-150px',
             marginBottom: '40px',
-            fontSize: '21px',
+            fontSize: '26px',
             lineHeight: '42px',
             color: '#542410',
             padding: '0 45px',
@@ -400,9 +406,9 @@ const PageThree = () => {
             height: 'auto',
             textAlign: 'justify',
             color: '#542410',
-            fontSize: '24px',
+            fontSize: '30px',
             lineHeight: '48px',
-            fontFamily: '"SimSun", "Songti SC", serif',
+            fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif',
             padding: '0 20px',
             boxSizing: 'border-box'
           }}>
@@ -410,9 +416,9 @@ const PageThree = () => {
           </div>
         </div>
       </div>
+      </div>
     </div>
-    </div>
-    <div style={{ position: 'relative', zIndex: 2 }}>
+    <div style={{ position: 'relative', zIndex: 2, backgroundColor: '#f0d4b5', boxShadow: '0 -10px 30px rgba(0,0,0,0.2)' }}>
       <PageFour />
     </div>
     </div>

@@ -176,7 +176,7 @@ const PriceWarTimeline = () => {
       fontSize: '16px',
       color: '#000000',
       marginTop: '20px',
-      fontFamily: "'SimHei', 'Heiti SC', sans-serif",
+      fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif',
       fontWeight: 'normal'
     }}>
       （数据来源：红餐大数据）

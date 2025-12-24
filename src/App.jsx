@@ -16,6 +16,8 @@ import pageOneDecoration2 from './assets/part1 素材/4.png';
 import pageOneDecoration3 from './assets/part1 素材/5.png';
 import pageOneDecoration6 from './assets/part1 素材/6.png';
 import pageOneDecoration7 from './assets/part1 素材/7.png';
+import bg1 from './assets/bg1.png';
+
 
 // Data for Scrollytelling Sections
 const SCROLLY_SECTIONS = [
@@ -340,7 +342,7 @@ function App() {
 
     const ctx = canvas.getContext('2d');
     const img = new Image();
-    img.src = '/src/assets/bg1.png';
+    img.src = bg1;
 
     const draw = () => {
       const containerWidth = container.offsetWidth;
@@ -421,10 +423,10 @@ function App() {
             width: '50%',
             textAlign: 'justify',
             color: '#542410', 
-            fontSize: '21px', 
+            fontSize: '26px', 
             lineHeight: '2',
             fontWeight: 'bold',
-            fontFamily: "'SimSun', 'Songti SC', serif"
+            fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif'
         }}>
             <p style={{ margin: 0 }}>
               很长一段时间里，咖啡在中国更多集中于少数城市和人群，带有明显的场合属性。近几年，随着价格下降和供给扩张，咖啡变得更容易买到，也更频繁地进入日常生活。从消费频率、市场规模到门店密度与城市覆盖，咖啡在中国呈现出持续扩张的趋势，一个体量不断放大的行业正在形成。
@@ -474,7 +476,7 @@ function App() {
                     <p className="content-body-text" style={{ 
                         color: '#f0e7da', 
                         fontFamily: "'SimSun', 'Songti SC', serif", 
-                        fontSize: '21px', 
+                        fontSize: '26px', 
                         lineHeight: '2',
                         position: 'relative',
                         zIndex: 1,
@@ -574,7 +576,7 @@ function App() {
                         width: '87%',
                         textAlign: 'justify',
                         color: '#f0e7da', 
-                        fontSize: '21px', 
+                        fontSize: '26px', 
                         letterSpacing: '1.5px',
                         lineHeight: '42px',
                         fontFamily: "'SimSun', 'Songti SC', serif",
@@ -603,13 +605,13 @@ function App() {
             />
             <div style={{
                 position: 'absolute',
-                top: 'calc(50% + 30px)',
+                top: 'calc(50% + 80px)',
                 right: '10%',
                 transform: 'translateY(-50%)',
                 width: '40%',
                 textAlign: 'justify',
                 color: '#542410', 
-                fontSize: '21px', 
+                fontSize: '26px', 
                 lineHeight: '2',
                 fontFamily: "'SimSun', 'Songti SC', serif",
                 fontWeight: 'bold'
@@ -725,6 +727,7 @@ function App() {
           transition: 'none', // Continuous update
           visibility: 'hidden',
           overflowY: 'hidden',
+          overflowX: 'hidden',
           willChange: 'clip-path' // Optimize performance
         }}
       >

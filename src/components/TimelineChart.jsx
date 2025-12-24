@@ -40,14 +40,14 @@ const TimelineChart = () => {
     margin: '0 auto',
     backgroundColor: 'transparent', // Transparent background
     padding: '20px 20px', // Increased padding slightly
-    fontFamily: '"SimSun", "Songti SC", serif', // Consistent with page font
+    fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif', // Consistent with page font
     width: '100%',
     boxSizing: 'border-box',
     position: 'relative'
   };
 
   const titleStyle = {
-    fontSize: '21px',
+    fontSize: '26px',
     fontWeight: 'normal',
     color: '#000000',
     marginBottom: '25px',

@@ -389,7 +389,7 @@ html, body {
 }
 
 .content-body-text {
-  font-family: "SimSun", "Songti SC", serif; 
+  font-family: "Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif; 
   font-size: 18px; 
   line-height: 1.8;
   color: var(--paper-bg);
@@ -580,14 +580,14 @@ html, body {
 }
 
 .page-two-content .section-title {
-  font-family: "SimSun", "Songti SC", serif;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif;
   font-size: 3rem;
   margin-bottom: 2rem;
   text-align: center;
 }
 
 .page-two-content .intro-text {
-  font-family: "SimSun", "Songti SC", serif;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif;
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: 3rem;
@@ -595,14 +595,14 @@ html, body {
 }
 
 .page-two-content .subsection-title {
-  font-family: "SimSun", "Songti SC", serif;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif;
   font-size: 1.8rem;
   margin-top: 3rem;
   margin-bottom: 1.5rem;
 }
 
 .page-two-content p {
-  font-family: "SimSun", "Songti SC", serif;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif;
   font-size: 1.1rem;
   line-height: 1.8;
   margin-bottom: 1.5rem;
