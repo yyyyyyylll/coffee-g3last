@@ -824,7 +824,7 @@ export const getFrequencyOption = () => {
     itemStyle: { color: baseColors[i] }
   }));
 
-  const centerXY = ['50%', '52%'];
+  const centerXY = ['50%', '55%'];
   
     return {
       backgroundColor: 'transparent',
@@ -832,7 +832,8 @@ export const getFrequencyOption = () => {
         text: '消费者咖啡饮用频次（%）',
       subtext: "2024与2025对比（单位：%）",
       left: 'center',
-      top: 0,
+      top: 10,
+      itemGap: 15,
       textStyle: {
         color: '#2f2f2f',
         fontSize: 26,
@@ -885,7 +886,7 @@ export const getFrequencyOption = () => {
         name: '2024',
         type: 'pie',
         center: centerXY,
-        radius: ['34%', '56%'],
+        radius: ['34%', '50%'],
         clockwise: true,
         avoidLabelOverlap: true,
         label: { show: false },
@@ -910,7 +911,7 @@ export const getFrequencyOption = () => {
         name: '2025',
         type: 'pie',
         center: centerXY,
-        radius: ['62%', '84%'],
+        radius: ['56%', '72%'],
         clockwise: true,
         avoidLabelOverlap: true,
         label: { show: false },

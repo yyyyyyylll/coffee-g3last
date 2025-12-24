@@ -9,6 +9,10 @@ import image6 from '../assets/part2-1素材/6.png';
 import image7 from '../assets/part2-1素材/7.png';
 import image8 from '../assets/part2-1素材/8.png';
 import image9 from '../assets/part2-1素材/9.png';
+import image10 from '../assets/part2-1素材/10.png';
+import imagePart2_2 from '../assets/part2-2素材/2.png';
+import decoration3 from '../assets/part2-2素材/3.png';
+import imagePart2_2_4 from '../assets/part2-2素材/4.png';
 import PriceWarTimeline from './PriceWarTimeline';
 import {
   getLuckinRevenueOption,
@@ -308,16 +312,16 @@ const ScrollyGroup = ({ items }) => {
           display: 'flex',
           alignItems: 'center',
           marginBottom: '100px',
-          minHeight: '400px'
+          minHeight: '480px'
         }}>
           {/* Text Section */}
-          <div style={{ flex: 1, paddingRight: '40px' }}>
+          <div style={{ width: '40%', flexShrink: 0, paddingRight: '40px' }}>
             <div className="content-body-text" style={{ fontSize: '21px', lineHeight: '42px', color: '#4B3621' }}>
               {item.text}
             </div>
           </div>
           {/* Chart Section */}
-          <div style={{ flex: 1, height: '400px', width: '50%' }}>
+          <div style={{ flex: 1, height: '480px' }}>
             {item.chart}
           </div>
         </div>
@@ -529,7 +533,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
               height: '120%',
               maxHeight: 'none',
               zIndex: 0,
-              opacity: 0.8
+              opacity: 1
             }} 
           />
          
@@ -710,8 +714,8 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
         width: '100vw',
         marginLeft: 'calc(50% - 50vw)',
         padding: '60px 0',
-        overflow: 'hidden',
-        marginTop: '-200px'
+        overflow: 'visible',
+        marginTop: '-130px'
       }}>
         {/* Left: Image 9 */}
         <div style={{ width: '50%', paddingLeft: '40px', boxSizing: 'border-box', overflow: 'hidden' }}>
@@ -719,51 +723,184 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
         </div>
         
         {/* Right: Text */}
-        <div style={{ width: '50%', paddingLeft: '20px', paddingRight: '100px', boxSizing: 'border-box' }}>
-          <p style={{ fontSize: '21px', lineHeight: '42px', textAlign: 'justify', margin: 0 }}>
+        <div style={{ width: '50%', paddingLeft: '20px', paddingRight: '100px', boxSizing: 'border-box', position: 'relative' }}>
+          {/* Decoration Image 10 (Center) */}
+          <img 
+            src={image10} 
+            alt="" 
+            style={{ 
+              position: 'absolute',
+              top: 'calc(50% - 10px)',
+              left: 'calc(50% - 190px)',
+              transform: 'translate(-50%, -50%)',
+              width: '106%', 
+              height: 'auto', 
+              opacity: 1.0,
+              zIndex: 0
+            }} 
+          />
+          
+          {/* Decoration Image 7 (Bottom Right) */}
+          <img 
+            src={image7} 
+            alt="" 
+            style={{ 
+              position: 'absolute',
+              bottom: '-273px',
+              right: '0',
+              width: '172%', 
+              height: 'auto', 
+              zIndex: 0,
+              opacity: 1
+            }} 
+          />
+
+          <p style={{ fontSize: '21px', lineHeight: '42px', textAlign: 'justify', margin: 0, position: 'relative', zIndex: 1 }}>
             对比不同品牌可以发现，这一轮价格战并非单纯降价，而是以降本为前提的长期策略。通过快速开店和标准化运营摊薄成本，并向低线城市下沉以降低租金与人力支出，咖啡品牌为低价提供了可持续支撑。降价只是结果，门店扩张与市场下沉才是品牌顺应消费降级的核心机制。
           </p>
         </div>
       </div>
 
+      {/* Image Part 2-2 */}
+      <div style={{
+        width: '97vw',
+        marginLeft: 'calc(50% - 48.5vw)',
+        position: 'relative',
+        marginTop: '60px',
+        marginBottom: '60px'
+      }}>
+        <img src={imagePart2_2} alt="" style={{ width: '100%', height: 'auto', display: 'block' }} />
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '25%',
+          width: 'calc(75% - 100px)',
+          color: '#4B3621',
+          fontSize: '24px',
+          lineHeight: '48px',
+          letterSpacing: '2px',
+          textAlign: 'justify'
+        }}>
+          <p style={{ marginBottom: '40px', fontSize: '24px', lineHeight: '48px', letterSpacing: '2px' }}>
+            如果说价格战首先是企业对消费环境变化的回应，那么它真正能否成立，还取决于消费者如何看待和使用这些更低价的咖啡。
+          </p>
+          <p style={{ fontSize: '24px', lineHeight: '48px', letterSpacing: '2px' }}>
+            数据显示，全国咖啡消费者总数接近4亿人，咖啡年消费量达28万吨，中国人均咖啡饮用杯数也从2016年的约9杯/年，增长至2024年的22.24杯/年。
+          </p>
+        </div>
+        <div style={{
+          position: 'absolute',
+          bottom: '10px',
+          right: '80px',
+          color: '#4B3621',
+          fontSize: '21px',
+          fontFamily: '"Songti SC", "SimSun", serif',
+          opacity: 0.8
+        }}>
+          （数据来源：2024中国城市咖啡发展报告）
+        </div>
+      </div>
+
       {/* Block 4: Intro to Consumption */}
-      <FullWidthText>
-        <h3 className="subsection-title" style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '30px', borderLeft: '5px solid #d97a00', paddingLeft: '15px', color: '#4B3621' }}>2. 价格理性下的咖啡消费需求</h3>
-        <p>
-          如果说价格战首先是企业对消费环境变化的回应，那么它真正能否成立，还取决于消费者如何看待和使用这些更低价的咖啡。
-        </p>
-        <p>
-          数据显示，全国咖啡消费者总数接近4亿人，咖啡年消费量达28万吨，中国人均咖啡饮用杯数也从2016年的约9杯/年，增长至2024年的22.24杯/年。
-        </p>
-      </FullWidthText>
+
 
       {/* Scrolly Group 3: Consumption Charts */}
       <ScrollyGroup items={[
         {
           text: (
-            <p>
-              咖啡的饮用频率呈现上升趋势。每周喝一杯及以上咖啡的消费者占比超过六成，其中每天饮用一杯及以上的重度用户稳定在10个百分点以上，构成市场消费主力军，而基本不喝咖啡的群体占比则在逐年缩小，咖啡无疑成为了当代社会的生活必需品。
-            </p>
+            <div style={{ position: 'relative', textAlign: 'center' }}>
+              <p style={{ fontSize: '21px', lineHeight: '42px' }}>
+                咖啡的饮用频率呈现上升趋势。每周喝一杯及以上咖啡的消费者占比超过六成，构成市场消费主力军，其中每天饮用一杯及以上的重度用户稳定在10个百分点以上，咖啡无疑成为了当代社会的生活必需品。
+              </p>
+              <img 
+                src={decoration3} 
+                alt="Decoration" 
+                style={{ 
+                  position: 'absolute', 
+                  top: '50%', 
+                  left: '50%', 
+                  marginLeft: '200px',
+                  marginTop: '40px',
+                  transform: 'translate(-50%, -50%)', 
+                  width: '190%',
+                  zIndex: -1,
+                  opacity: 1
+                }}  
+              />
+            </div>
           ),
           chart: <ReactECharts option={getFrequencyOption()} style={{ height: '100%', width: '100%' }} />
         },
         {
           text: (
-            <p>
-              伴随咖啡成为生活刚需，人们对咖啡单杯的成本及价格的关注度随之而来。艾媒咨询的调研数据显示，消费者对单杯价格的接受度有所下降。对比2024年，2025 年，消费者可接受的价格区间明显向中低价位集中，11–20 元区间占比上升，而 21–30 元这一传统主流区间占比下降，高价区间整体收缩。这表明，消费者的价格预期在下降，性价比成为决策的核心，他们更倾向于选择价格可控、性价比更高的产品。价格敏感度的上升，使低价现制咖啡更容易被纳入日常消费，也为前述价格战和高频消费提供了需求侧的现实基础。
-            </p>
+            <div style={{ position: 'relative', textAlign: 'center' }}>
+              <p style={{ fontSize: '21px', lineHeight: '42px' }}>
+                伴随咖啡成为生活刚需，人们对咖啡单杯的成本及价格的关注度随之而来。数据显示，消费者对单杯价格的接受度有所下降。对比2024年，2025年消费者可接受的价格区间明显向中低价位集中，11–20元区间占比上升，而21–30元这一传统主流区间占比下降，高价区间整体收缩。这表明消费者对咖啡的价格预期持续下移，性价比成为主要决策标准，价格敏感度上升，使低价现制咖啡更容易被纳入日常、高频的消费选择。
+              </p>
+              <img 
+                src={decoration3} 
+                alt="Decoration" 
+                style={{ 
+                  position: 'absolute', 
+                  top: '50%', 
+                  left: '50%', 
+                  marginLeft: '200px',
+                  marginTop: '-30px',
+                  transform: 'translate(-50%, -50%)', 
+                  width: '190%',
+                  zIndex: -1,
+                  opacity: 1
+                }}  
+              />
+            </div>
           ),
           chart: <ReactECharts option={getPriceAcceptanceOption()} style={{ height: '100%', width: '100%' }} />
         },
         {
           text: (
-            <p>
-              消费者的实际消费行为也呼应了这一现象。2025年数据显示，中国现制咖啡消费者每月在咖啡饮品上花费100元以内的消费者占比近半成，而月消费150元以上的高消费用户仅占8.96%，相比2022年的23.2%大幅下降。结合价格接受度来看，这意味着大多数消费者并非减少咖啡消费，而是通过选择价格更低的咖啡品牌，通过降低单杯支出、提高消费频率来控制总体预算，实现更频繁的咖啡饮用。
-            </p>
+            <div style={{ position: 'relative', textAlign: 'center' }}>
+              <p style={{ fontSize: '21px', lineHeight: '42px' }}>
+                消费者的实际消费行为也呼应了这一现象。数据显示，2025年消费者每月在咖啡饮品上花费100元以内的消费者占比近半成，而月消费150元以上的高消费用户仅占8.96%，相比2022年的23.2%大幅下降。结合价格接受度来看，这意味着大多数消费者倾向于选择价格更低的咖啡品牌，通过降低单杯支出、提高消费频率来实现更频繁的咖啡饮用。
+              </p>
+              <img 
+                src={decoration3} 
+                alt="Decoration" 
+                style={{ 
+                  position: 'absolute', 
+                  top: '50%', 
+                  left: '50%', 
+                  marginLeft: '200px',
+                  marginTop: '40px',
+                  transform: 'translate(-50%, -50%)', 
+                  width: '190%',
+                  zIndex: -1,
+                  opacity: 1
+                }}  
+              />
+            </div>
           ),
           chart: <ReactECharts option={getMonthConsumptionOption()} style={{ height: '100%', width: '100%' }} />
         }
       ]} />
+
+      {/* Inserted Image 4: Full Screen Break */}
+      <div style={{
+        width: '100vw',
+        marginLeft: 'calc(50% - 50vw)',
+        overflow: 'hidden',
+        lineHeight: 0,
+        marginBottom: '2em' // Add some space before the next section
+      }}>
+        <img 
+          src={imagePart2_2_4} 
+          alt="Decoration" 
+          style={{ 
+            width: '100%', 
+            height: 'auto', 
+            display: 'block' 
+          }} 
+        />
+      </div>
 
       {/* Block 5: Intro to Wordcloud */}
       <FullWidthText>
@@ -799,6 +936,18 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
             总体来看，消费降级并未削弱咖啡需求，而是重塑了消费者的消费方式。随着价格敏感度上升，消费者通过压低单杯支出、提高饮用频率，将咖啡重新纳入可负担的日常开销之中。价格理性取代品牌忠诚，性价比成为核心判断标准，低价现制咖啡由此获得稳定需求基础，而中高价咖啡则不断接受“值不值”的现实检验。这种以精打细算为特征的消费转向，构成了价格战能够持续的重要需求前提。
           </p>
         </div>
+      </FullWidthText>
+
+      {/* Block 7: Final Conclusion / Transition */}
+      <FullWidthText>
+        <p style={{ 
+          fontSize: '24px', 
+          lineHeight: '48px', 
+          fontWeight: 'bold', 
+          textAlign: 'center'
+        }}>
+          消费者的价格理性，为价格战的持续提供了可能，但价格战得以长期维持，更离不开企业在成本控制与供应链端的深耕。没有供给端的成本压缩与效率提升，低价策略便无法成为常态化的商业模式。因此，理解这场价格战的本质，必须深入到供给侧，探究企业如何在压低价格的同时，依然维持着庞大的商业版图。
+        </p>
       </FullWidthText>
 
       {/* Transition Trigger Element */}
