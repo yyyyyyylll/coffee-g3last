@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
+import PageFour from './PageFour';
 import CollabCardStack from './CollabCardStack';
 import TimelineChart from './TimelineChart';
 import coverImg from '../assets/数据新闻-part3素材/2.png';
@@ -63,7 +64,9 @@ const PageThree = () => {
   };
 
   return (
-    <div className="page-three-container" style={{ 
+    <div style={{ width: '100%' }}>
+      <div style={{ position: 'sticky', bottom: 0, zIndex: 1 }}>
+        <div className="page-three-container" style={{  
       width: '100%', 
       minHeight: '100vh', 
       backgroundColor: '#f0d4b5', // Light beige background
@@ -331,7 +334,11 @@ const PageThree = () => {
           </div>
         </div>
       </div>
+    </div>
+    </div>
+    <div style={{ position: 'relative', zIndex: 2 }}>
       <PageFour />
+    </div>
     </div>
   );
 };
