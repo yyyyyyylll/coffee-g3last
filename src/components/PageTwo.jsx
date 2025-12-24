@@ -342,10 +342,10 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
         <img src={title2} alt="消费降级" style={{ width: '1000px', height: 'auto' }} />
       </div>
       <div style={{ textAlign: 'center', marginBottom: '40px', color: '#542410', marginTop: '-200px' }}>
-        <p style={{ fontSize: '26px', lineHeight: '42px', marginBottom: '0', textAlign: 'center' }}>
-          价格作为最直观的市场信号，与咖啡市场的高速增长紧密相连，成为推动市场渗透与重塑消费习惯的核心支点。
+        <p style={{ fontSize: '26px', lineHeight: '42px', marginBottom: '0', textAlign: 'center', fontWeight: 'bold', fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif' }}>
+          价格作为最直观的市场信号，与咖啡市场的高速增长紧密相连，<br />成为推动市场渗透与重塑消费习惯的核心支点。
         </p>
-        <p style={{ fontSize: '26px', lineHeight: '42px', marginTop: '0', textAlign: 'center' }}>
+        <p style={{ fontSize: '26px', lineHeight: '42px', marginTop: '0', textAlign: 'center', fontWeight: 'bold', fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif' }}>
           这既体现在咖啡品牌的战略选择上，也反映在消费者端的需求变迁中。
         </p>
       </div>
@@ -361,7 +361,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
           position: 'absolute',
           top: '50%',
           right: '10%',
-          transform: 'translateY(calc(-50% + 140px))',
+          transform: 'translateY(calc(-50% + 200px))',
           width: '45%',
           color: '#542410',
           fontSize: '26px',
@@ -950,7 +950,7 @@ const PageTwo = ({ onCupRef, hideCup = false }) => {
                 fontWeight: 'normal',
                 position: 'absolute',
                 width: '100%',
-                bottom: '0px'
+                bottom: '-40px'
               }}>
                 （数据来源：艾媒咨询）
               </div>

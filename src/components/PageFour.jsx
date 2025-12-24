@@ -64,7 +64,7 @@ const PageFour = () => {
           <img src={img6} alt="Part 4 Illustration 3" style={{ width: '100%', height: 'auto', display: 'block' }} />
           <div style={{
             position: 'absolute',
-            top: 'calc(50% - 137px)',
+            top: 'calc(50% - 144px)',
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: '85%',

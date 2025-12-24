@@ -459,7 +459,7 @@ function App() {
                     marginBottom: '4rem',
                     width: '100%'
                 }}>
-                    <div style={{ width: '100%', marginTop: '-340px' }}>
+                    <div style={{ width: '100%', marginTop: '-440px' }}>
                         {section.chart}
                     </div>
                 </div>
@@ -475,7 +475,7 @@ function App() {
                 <div style={{ width: '40%', paddingRight: '2rem', boxSizing: 'border-box', position: 'relative' }}>
                     <p className="content-body-text" style={{ 
                         color: '#f0e7da', 
-                        fontFamily: "'SimSun', 'Songti SC', serif", 
+                        fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif', 
                         fontSize: '26px', 
                         lineHeight: '2',
                         position: 'relative',
@@ -579,7 +579,7 @@ function App() {
                         fontSize: '26px', 
                         letterSpacing: '1.5px',
                         lineHeight: '42px',
-                        fontFamily: "'SimSun', 'Songti SC', serif",
+                        fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif',
                         fontWeight: 'bold'
                     }}>
                         从省域分布来看，2025年中国咖啡门店呈现出明显的区域集聚特征，整体集中于东部和南部沿海地区。经济体量大、人口密集、城市化水平较高的省份成为咖啡门店分布的集中区域，其中广东省断层领先，而中西部和部分东北省份门店数量相对较少。
@@ -613,7 +613,7 @@ function App() {
                 color: '#542410', 
                 fontSize: '26px', 
                 lineHeight: '2',
-                fontFamily: "'SimSun', 'Songti SC', serif",
+                fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif',
                 fontWeight: 'bold'
             }}>
                 <p style={{ margin: 0 }}>
