@@ -61,7 +61,7 @@ export const getLuckinRevenueOption = () => ({
   },
 
   grid: {
-    top: 90,
+    top: 100,
     left: '8%',
     right: '8%',
     bottom: '12%',
@@ -150,7 +150,7 @@ export const getLuckinProfitOption = () => ({
     axisPointer: { type: 'cross', crossStyle: { color: '#999' } }
   },
   legend: { top: 45, data: ['利润（千元）', '利润率（%）'] },
-  grid: { top: 90, left: '8%', right: '8%', bottom: '12%', containLabel: true },
+  grid: { top: 100, left: '8%', right: '8%', bottom: '12%', containLabel: true },
   xAxis: [
     {
       type: 'category',
@@ -247,7 +247,7 @@ export const getLuckinCostOption = () => ({
     data: ['总运营费用', '门店运营费用占比', '材料成本费用占比']
   },
   grid: {
-    top: 90,
+    top: 100,
     left: '8%',
     right: '8%',
     bottom: '12%',
@@ -563,7 +563,7 @@ export const getStarbucksCostOption = () => ({
     }
   },
   legend: { top: 45, data: ['中国总运营费用', '产品和分销成本占比', '门店运营费用占比'] },
-  grid: { top: 90, left: '8%', right: '8%', bottom: '12%', containLabel: true },
+  grid: { top: 100, left: '8%', right: '8%', bottom: '12%', containLabel: true },
   xAxis: {
     type: 'category',
     data: ['2022', '2023', '2024', '2025'],

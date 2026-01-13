@@ -47,7 +47,7 @@ const TimelineChart = () => {
   };
 
   const titleStyle = {
-    fontSize: '26px',
+    fontSize: '21px',
     fontWeight: 'normal',
     color: '#000000',
     marginBottom: '25px',

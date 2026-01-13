@@ -6,6 +6,7 @@ import ComparisonChartSection from './components/ComparisonChartSection';
 import StoreCountChartSection from './components/StoreCountChartSection';
 import ProvinceBarChartSection from './components/ProvinceBarChartSection';
 import CityPieChartSection from './components/CityPieChartSection';
+import PriceDropChartSection from './components/PriceDropChartSection';
 import PageTwo from './components/PageTwo';
 import PageThree from './components/PageThree';
 import change1 from './assets/change1.png';
@@ -16,6 +17,8 @@ import pageOneDecoration2 from './assets/part1 素材/4.png';
 import pageOneDecoration3 from './assets/part1 素材/5.png';
 import pageOneDecoration6 from './assets/part1 素材/6.png';
 import pageOneDecoration7 from './assets/part1 素材/7.png';
+import priceDropImage from './assets/part1 素材/10.png';
+import decorationImage from './assets/part1 素材/9.png';
 import bg1 from './assets/bg1.png';
 
 
@@ -50,6 +53,11 @@ const SCROLLY_SECTIONS = [
     id: 'city',
     text: "从城市分布来看，咖啡门店的扩张已明显突破一线城市的传统边界。2025年，三四线及以下城市的咖啡门店占比已接近整体的一半，成为门店数量增长的主要承载空间，咖啡行业正在走向更广泛的城市体系。",
     chart: <CityPieChartSection />
+  },
+  {
+    id: 'price-drop',
+    text: "一个值得关注的变化是，现制咖啡的产品单价在2023年出现了明显的下降。以瑞幸为例，其产品单价平均值从2022年30元以上的水平，下降至2023年的18元左右，价格回落幅度显著。这一变化并非个别产品的短期促销，而是发生在行业扩张过程中具有普遍意义的价格调整。在整体支出趋紧、消费者更加谨慎的背景下，咖啡通过“降价”，重新进入日常消费的可选范围，获得了更大的需求弹性。",
+    chart: <PriceDropChartSection />
   }
 ];
 
@@ -450,7 +458,45 @@ function App() {
       <div className="scrolly-container-linear" style={{ display: 'flex', flexDirection: 'column', maxWidth: '1200px', margin: '0 auto', width: '90%' }}>
         {SCROLLY_SECTIONS.map((section, index) => (
             <React.Fragment key={section.id}>
-            {section.id === 'province' ? (
+            {section.id === 'price-drop' ? (
+                <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    minHeight: '80vh', 
+                    marginBottom: 'calc(4rem + 60px)',
+                    paddingTop: '0',
+                    marginTop: '-50px'
+                }}>
+                    <div style={{ width: '40%', paddingRight: '2rem', boxSizing: 'border-box', position: 'relative' }}>
+                         <div style={{ position: 'relative', width: '100%' }}>
+                            <img 
+                                src={priceDropImage} 
+                                alt="Price Drop Background" 
+                                style={{ width: '250%', height: 'auto', display: 'block', marginLeft: 'calc(-75% + 70px)' }} 
+                            />
+                            <p className="content-body-text" style={{ 
+                                position: 'absolute',
+                                top: 'calc(50% - 30px)',
+                                left: 'calc(50% + 30px)',
+                                transform: 'translate(-50%, -50%)',
+                                width: 'calc(80% + 140px)',
+                                margin: 0,
+                                color: '#542410', 
+                                fontFamily: '"Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif', 
+                                fontSize: '26px', 
+                                lineHeight: '42px',
+                                zIndex: 1,
+                                textAlign: 'justify'
+                            }}>
+                                {section.text}
+                            </p>
+                        </div>
+                    </div>
+                    <div style={{ width: '60%' }}>
+                        {section.chart}
+                    </div>
+                </div>
+            ) : section.id === 'province' ? (
                 <div style={{ 
                     display: 'flex', 
                     justifyContent: 'center', 
@@ -605,10 +651,10 @@ function App() {
             />
             <div style={{
                 position: 'absolute',
-                top: 'calc(50% + 80px)',
+                top: 'calc(50% + 60px)',
                 right: '10%',
                 transform: 'translateY(-50%)',
-                width: '40%',
+                width: 'calc(40% + 220px)',
                 textAlign: 'justify',
                 color: '#542410', 
                 fontSize: '26px', 
@@ -617,11 +663,23 @@ function App() {
                 fontWeight: 'bold'
             }}>
                 <p style={{ margin: 0 }}>
-                    综合来看，中国咖啡行业的快速扩张并非偶然，在整体消费增速放缓的背景下，呈现出一条与宏观趋势并不完全同步的增长曲线。在消费环境趋紧的情况下，为什么现制咖啡反而获得了更强的生命力？
+                    价格层面的转向，使得现制咖啡能够在消费降速的环境中维持扩张，为我们理解行业近年的增长逻辑提供了关键线索。对这一现象的进一步分析，需要回到消费逻辑本身。
                 </p>
                 <p style={{ margin: 0 }}>
-                    对这一现象的解读需要回到消费逻辑本身。基于此，本文从消费降级与情绪经济两个维度，分析它们如何共同推动近年中国咖啡行业的发展。
+                    基于此，本文将从消费降级与情绪经济两个维度，考察它们如何在价格变化的背景下，共同推动中国咖啡行业的发展。
                 </p>
+                <img 
+                    src={decorationImage} 
+                    alt="Decoration" 
+                    style={{ 
+                        position: 'absolute',
+                        top: '100%',
+                        right: 0,
+                        width: '33%',
+                        height: 'auto',
+                        marginTop: '-5px'
+                    }} 
+                />
             </div>
         </div>
       </div>
@@ -680,7 +738,6 @@ function App() {
         >
             <span className="arrow-icon">↑</span> 
              Pull to Explore 
-            <span className="arrow-icon">↑</span>
         </div>
         <div className="slider-content" style={{ paddingTop: expanded ? '0' : '4rem', transition: 'padding-top 0.5s', backgroundColor: '#542410' }}>
            {MainContent}

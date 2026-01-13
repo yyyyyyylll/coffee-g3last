@@ -31,7 +31,6 @@ export default function Hero() {
 
       <div className="title-container">
         <h1 className="liquid-title" data-text="COFFEE">COFFEE</h1>
-        <img src={subtitleImg} alt="Subtitle" className="hero-subtitle-img" />
       </div>
     </section>
   );

@@ -243,6 +243,7 @@ const PageThree = () => {
 
         <p style={{
           ...fullWidthTextStyle,
+          marginTop: '-20px',
           fontSize: '26px',
           lineHeight: '42px',
           color: '#542410',

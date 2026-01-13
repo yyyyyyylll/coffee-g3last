@@ -23,17 +23,6 @@ const StoreCountChartSection = () => {
         crossStyle: { color: '#999' }
       }
     },
-    toolbox: {
-      feature: {
-        dataView: { show: true, readOnly: false },
-        magicType: { show: true, type: ['line', 'bar'] },
-        restore: { show: true },
-        saveAsImage: { show: true }
-      },
-      iconStyle: {
-        borderColor: '#F0ECE5'
-      }
-    },
     legend: {
       top: 45,
       data: ['中国咖啡门店数量', '增长率'],

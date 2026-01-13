@@ -1,134 +1,102 @@
-# Coffee Market Data Visualization Project (coffee-g3last)
+# 2025 中国咖啡市场分析 - 数据新闻可视化项目
 
-## 项目简介 (Project Introduction)
+本项目是一个基于 **React 19** 和 **ECharts 5** 的交互式数据新闻网页，旨在通过可视化的方式深度分析 2025 年中国咖啡市场的现状与趋势。项目采用 **“市场概览 -> 价格战 (消费降级) -> 情绪经济”** 的叙事逻辑，结合沉浸式滚动（Scrollytelling）和丰富的图表交互，探讨了中国咖啡行业在宏观经济增速放缓背景下的逆势增长、价格内卷现状以及品牌如何通过情绪价值寻求破局。
 
-本项目是一个关于**中国咖啡市场**的数据可视化叙事网页（Scrollytelling）。通过交互式图表和流畅的滚动动效，深入分析了中国咖啡行业的市场规模、增长趋势、门店分布以及现制咖啡的崛起。
+## 1. 核心特性 (Key Features)
 
-项目旨在通过数据讲述故事，探讨以下关键议题：
-- 中国咖啡市场与新式茶饮市场的规模及增速对比。
-- 现制咖啡在整体咖啡市场中的地位变化。
-- 咖啡门店在各省份及城市层级的分布情况。
-- 市场竞争格局（如价格战、情绪经济等）。
+### 1.1 沉浸式滚动叙事 (Scrollytelling)
+项目摒弃了传统的点击跳转模式，采用单页滚动叙事。用户通过简单的滚轮操作，即可驱动页面的章节流转。
+- **动态图表联动**: 随着用户的滚动，侧边的图表（折线图、柱状图、饼图等）会根据当前可视区域的文案自动切换，保持“文随图动”的阅读体验。
+- **章节无缝过渡**: 实现了从首页封面到正文内容的平滑过渡，利用 CSS `transform` 和 `opacity` 属性配合 React 状态管理，消除页面割裂感。
 
-## 核心功能 (Key Features)
+### 1.2 高性能交互动画
+为了保证在复杂交互下的 60fps 流畅体验，项目采用了混合动画策略：
+- **requestAnimationFrame (rAF) 驱动**: 核心的转场动画（如 PageTwo 到 PageThree 的圆形揭示效果）完全由 `rAF` 循环驱动。
+- **直接 DOM 操作**: 在高频动画循环中，绕过 React 的 Virtual DOM diff 机制，直接通过 `ref.current.style` 修改 DOM 属性（如 `clip-path`、`transform`），最大程度降低重渲染开销。
+- **视差滚动 (Parallax)**: 首页背景图与前景元素采用不同的滚动速率，增强视觉深度。
 
-- **交互式数据图表**: 使用 **ECharts** 展示动态图表，支持用户交互。
-- **滚动叙事 (Scrollytelling)**: 随着页面滚动，图表和文字内容通过动效流畅切换，引导用户阅读。
-- **多维度数据分析**:
-  - **市场概览**: 包含市场规模、增速对比。
-  - **结构分析**: 现制咖啡占比分析。
-  - **地理分布**: 省份及城市层级的门店分布热力图/饼图。
-  - **深度专题**: 包含价格战时间轴、词云分析等。
-- **视觉体验**: 结合高质量插画与数据图表，提供沉浸式的阅读体验。
+### 1.3 多维数据可视化
+集成 ECharts 5，实现了多样化的数据展示形式：
+- **动态折线/柱状图**: 展示市场规模增长与门店扩张趋势，支持数据点的动态高亮与 Tooltip 交互。
+- **地图可视化**: 使用 GeoJSON 数据渲染中国地图，直观展示咖啡门店的省份分布密度。
+- **情感词云**: 利用 `echarts-wordcloud` 插件，将社交媒体（小红书）上的用户评论转化为动态词云，直观呈现品牌情绪价值。
+- **自定义交互组件**: 开发了“联名卡片堆叠”组件，用户可手动拖拽查看不同品牌的联名活动详情。
 
-## 技术架构与实现 (Technical Architecture & Implementation)
+## 2. 技术实现详解 (Technical Implementation)
 
-### 1. 核心技术栈 (Tech Stack)
+### 2.1 技术栈
+- **核心框架**: [React 19](https://react.dev/)
+- **构建工具**: [Vite 7](https://vitejs.dev/)
+- **图表库**: [ECharts 5](https://echarts.apache.org/) + [echarts-for-react](https://github.com/hustcc/echarts-for-react) + [echarts-wordcloud](https://github.com/ecomfe/echarts-wordcloud)
+- **图标库**: [Lucide React](https://lucide.dev/)
+- **样式**: CSS Modules (组件级样式隔离) + Inline Styles (动态动画)
 
-*   **前端框架**: [React 19](https://react.dev/)
-    *   利用 Hooks (`useState`, `useEffect`, `useRef`) 管理状态与生命周期。
-    *   使用 Functional Components 构建模块化 UI。
-*   **构建工具**: [Vite](https://vitejs.dev/)
-    *   提供极速的冷启动和热更新 (HMR) 体验。
-*   **数据可视化**:
-    *   **ECharts 5**: 强大的底层图表库，支持复杂的交互和定制。
-    *   **echarts-for-react**: React 组件封装，简化 ECharts 的声明式调用。
-    *   **echarts-wordcloud**: 用于生成词云图表。
-*   **样式与动画**:
-    *   **CSS3**: Flexbox 布局，CSS Transitions。
-    *   **Inline Styles**: 在组件层面通过内联样式实现动态布局调整。
-    *   **requestAnimationFrame**: 用于高性能的自定义滚动动效。
+### 2.2 关键算法与逻辑
 
-### 2. 技术实现细节 (Implementation Details)
+#### 2.2.1 圆形遮罩揭示 (Circle Reveal Transition)
+这是项目中连接“价格战”与“情绪经济”章节的核心转场效果。
+- **原理**: 利用 CSS `clip-path: circle(r px at x y)` 属性。PageThree 初始状态下覆盖在 PageTwo 之上，但 `r=0`（不可见）。
+- **交互**: 监听滚轮事件 `wheel`。当用户在 PageTwo 底部继续向下滚动时，计算鼠标位置或屏幕中心作为圆心 `(x, y)`。
+- **物理模拟**: 使用线性插值 (Lerp) 算法 `current += (target - current) * 0.1` 平滑更新半径 `r`，实现具有阻尼感的动画效果，避免生硬的线性变化。
 
-#### 2.1 滚动叙事 (Scrollytelling) 引擎
-本项目采用了多种技术手段实现流畅的滚动叙事体验：
+#### 2.2.2 滚动监听与图表切换
+在 `PageTwo.jsx` 中，实现了一个简易的滚动监听器（Scroll Observer）：
+- 监听正文容器的 `scroll` 事件。
+- 实时计算每个段落（Section）相对于视口的位置。
+- 当某个段落进入视口中心区域时，触发 React State 更新 (`activeChart`)，从而通知右侧图表区域渲染对应的 ECharts 组件。
 
-*   **Intersection Observer API**:
-    *   在 `StickyWordCloudSection` 等组件中，使用 `IntersectionObserver` 监听文字段落与视口的交叉状态。
-    *   通过设置 `rootMargin: '-45% 0px -45% 0px'`，精确检测当前阅读焦点的段落，从而触发右侧图表的即时切换与更新。
-*   **Sticky Positioning**:
-    *   利用 CSS `position: sticky` 将图表容器固定在视口特定位置，配合左侧滚动的文字流，实现经典的 "Sticky Scrollytelling" 布局。
-*   **自定义高性能动效**:
-    *   在 `App.jsx` 中，通过 `requestAnimationFrame` 实现了一个自定义的动画循环 (Animation Loop)。
-    *   监听用户的滚轮事件 (`wheel`) 和触摸事件 (`touchmove`)，计算 `deltaY` 来驱动 `clip-path` 的半径变化，实现了从封面到内容的圆形揭示 (Circle Reveal) 转场效果。
-    *   使用 `Lerp` (Linear Interpolation) 算法对动画数值进行平滑处理，确保视觉体验的丝滑流畅。
-
-#### 2.2 数据可视化集成
-*   **组件化封装**:
-    *   将不同类型的图表封装为独立组件（如 `ChartSection`, `ProportionChartSection`），内部管理各自的 ECharts 配置项 (`option`)。
-*   **动态数据渲染**:
-    *   图表数据（如 `csvData`）与视图分离，通过预处理函数（如 `formatGrowthRate`）将原始数据转换为图表可用的格式。
-    *   利用 React 的状态更新机制，当滚动到不同叙事节点时，自动触发图表的数据刷新或样式重绘。
-
-#### 2.3 响应式与布局
-*   采用 **Flexbox** 布局实现左右分栏（文字/图表）的自适应排列。
-*   使用百分比宽度 (`width: '88%'`) 和 `calc()` 计算属性，确保在不同屏幕尺寸下内容的合理展示。
-*   针对移动端和桌面端进行了适配逻辑处理，例如根据窗口大小动态更新最大遮罩半径 (`maxRadius`)。
-
-## 项目文件框架 (Project Structure)
-
-项目主要文件结构如下：
+## 3. 项目文件架构 (Project Structure)
 
 ```
-coffee-g3last/
-├── public/                 # 静态资源文件
+/Users/zhiyu/Documents/coffee-g3last/
+├── package.json                # 项目依赖配置 (React 19, Vite, ECharts)
+├── vite.config.js              # Vite 构建配置
+├── index.html                  # 应用入口 HTML
 ├── src/
-│   ├── assets/             # 图片及多媒体素材
-│   │   ├── part1 素材/     # 第一部分素材
-│   │   ├── part2-1素材/    # 第二部分素材
-│   │   ├── part4_assets/   # 第四部分素材
+│   ├── main.jsx                # React 渲染入口
+│   ├── App.jsx                 # 主应用组件 (包含全局状态管理与核心转场逻辑)
+│   ├── App.css                 # 全局样式
+│   ├── assets/                 # 静态资源目录
+│   │   ├── bg1.png, bg2.png... # 背景图片
+│   │   ├── part1 素材/         # 第一章相关图片资源
+│   │   ├── part2-1素材/        # 第二章相关图片资源
 │   │   └── ...
-│   ├── components/         # React 组件
-│   │   ├── Hero.jsx        # 首页/头图组件
-│   │   ├── PageTwo.jsx     # 第二页组件
-│   │   ├── PageThree.jsx   # 第三页组件
-│   │   ├── PageFour.jsx    # 第四页组件
-│   │   ├── ChartSection.jsx          # 通用图表容器
-│   │   ├── ProportionChartSection.jsx # 占比图表组件
-│   │   ├── StoreCountChartSection.jsx # 门店数量图表组件
-│   │   ├── ProvinceBarChartSection.jsx # 省份分布图表组件
-│   │   └── ...
-│   ├── data/               # 静态数据文件
-│   │   └── priceWarData.js # 价格战相关数据
-│   ├── App.jsx             # 主应用入口，包含滚动逻辑
-│   ├── main.jsx            # 渲染入口
-│   └── index.css           # 全局样式
-├── package.json            # 项目依赖及脚本配置
-├── vite.config.js          # Vite 配置文件
-└── README.md               # 项目说明文档
+│   ├── components/             # React 组件库
+│   │   ├── Hero.jsx            # [组件] 首页/封面 (全屏背景 + 标题动画)
+│   │   ├── PageTwo.jsx         # [组件] 第二章：市场概览与价格战 (Scrollytelling 容器)
+│   │   ├── PageThree.jsx       # [组件] 第三章：情绪经济 (圆形揭示效果的目标页面)
+│   │   ├── PageFour.jsx        # [组件] 结语页
+│   │   ├── ChartSection.jsx    # [图表] 通用图表容器组件
+│   │   ├── StoreCountChartSection.jsx # [图表] 门店数量增长趋势图
+│   │   ├── ProvinceBarChartSection.jsx # [图表] 省份分布条形图
+│   │   ├── CityPieChartSection.jsx    # [图表] 城市等级分布饼图
+│   │   ├── ProportionChartSection.jsx # [图表] 现制咖啡占比图
+│   │   ├── ComparisonChartSection.jsx # [图表] 市场规模对比图
+│   │   ├── PriceWarTimeline.jsx       # [交互] 价格战时间轴组件
+│   │   ├── CollabCardStack.jsx        # [交互] 联名活动卡片堆叠组件
+│   │   ├── StickyWordCloudSection.jsx # [图表] 情绪词云组件
+│   │   └── Slider.jsx                 # [交互] 图片滑动对比组件
+│   └── data/
+│       └── priceWarData.js     # 价格战相关静态数据
 ```
 
-## 安装与运行 (Installation & Usage)
+## 4. 快速开始 (Getting Started)
 
-确保你的本地环境已安装 [Node.js](https://nodejs.org/) (推荐 v16+)。
-
-1.  **克隆项目或下载源码**
-    ```bash
-    git clone <repository-url>
-    cd coffee-g3last
-    ```
-
-2.  **安装依赖**
+1.  **环境准备**: 确保本地已安装 Node.js (推荐 v18+)。
+2.  **安装依赖**:
     ```bash
     npm install
     ```
-
-3.  **启动开发服务器**
+3.  **启动开发环境**:
     ```bash
     npm run dev
     ```
-    启动后，在浏览器访问控制台输出的地址（通常是 `http://localhost:5173`）。
-
-4.  **构建生产版本**
+    浏览器访问 `http://localhost:5173` 即可预览。
+4.  **生产构建**:
     ```bash
     npm run build
     ```
+    构建产物将输出至 `dist/` 目录。
 
-## 贡献 (Contribution)
-
-欢迎提出改进建议或提交 Pull Request。
-
-## 许可证 (License)
-
-[MIT License](LICENSE)
+## 5. 贡献者 (Contributors)
+Coffee G3 Team
